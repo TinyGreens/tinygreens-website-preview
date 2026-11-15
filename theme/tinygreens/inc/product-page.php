@@ -34,9 +34,20 @@ add_shortcode( 'tinygreens_product_panel', function () {
 	$cat   = tg_product_main_cat( $id );
 	$sizes = trim( wp_strip_all_tags( get_post_field( 'post_excerpt', $id ) ) );
 	$micro = $cat && 'microherbs' === $cat->slug;
+	// Editable in WordPress: Products → Edit → Product data → Attributes
+	// ("Flavour" and "Great with"; separate several uses with | ).
+	$product = function_exists( 'wc_get_product' ) ? wc_get_product( $id ) : null;
+	$flavour = $product ? $product->get_attribute( 'Flavour' ) : '';
+	$uses    = $product ? str_replace( ' | ', ', ', $product->get_attribute( 'Great with' ) ) : '';
 	ob_start();
 	?>
 	<dl class="tg-pp-facts">
+		<?php if ( $flavour ) : ?>
+		<div><dt>Flavour</dt><dd><?php echo esc_html( $flavour ); ?></dd></div>
+		<?php endif; ?>
+		<?php if ( $uses ) : ?>
+		<div><dt>Great with</dt><dd><?php echo esc_html( $uses ); ?></dd></div>
+		<?php endif; ?>
 		<div><dt>Sizes</dt><dd><?php echo esc_html( $sizes ? $sizes : 'On request' ); ?></dd></div>
 		<?php if ( $cat ) : ?>
 		<div><dt>Type</dt><dd><a href="<?php echo esc_url( get_term_link( $cat ) ); ?>"><?php echo esc_html( $cat->name ); ?></a></dd></div>

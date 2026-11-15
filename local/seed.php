@@ -65,9 +65,11 @@ foreach ( $tg_pages as $p ) {
 	}
 }
 
-if ( ! class_exists( 'WC_Product_Simple' ) || get_posts( array( 'post_type' => 'product', 'numberposts' => 1, 'post_status' => 'any' ) ) ) {
+if ( ! class_exists( 'WC_Product_Simple' ) ) {
 	return;
 }
+$tg_has_products = (bool) get_posts( array( 'post_type' => 'product', 'numberposts' => 1, 'post_status' => 'any' ) );
+if ( ! $tg_has_products ) :
 
 // Skip WooCommerce's setup wizard and sample notices in the local preview.
 update_option( 'woocommerce_onboarding_profile', array( 'skipped' => true ) );
@@ -135,3 +137,6 @@ foreach ( $products as $i => $row ) {
 	}
 	$p->save();
 }
+endif;
+
+require __DIR__ . '/product-drafts.php';

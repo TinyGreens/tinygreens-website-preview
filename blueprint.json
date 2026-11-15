@@ -1,8 +1,13 @@
 {
   "$schema": "https://playground.wordpress.net/blueprint-schema.json",
   "landingPage": "/",
-  "preferredVersions": { "php": "8.3", "wp": "latest" },
-  "features": { "networking": true },
+  "preferredVersions": {
+    "php": "8.3",
+    "wp": "latest"
+  },
+  "features": {
+    "networking": true
+  },
   "login": false,
   "steps": [
     {
@@ -14,22 +19,48 @@
         "refType": "branch",
         "path": "theme/tinygreens"
       },
-      "options": { "activate": true, "targetFolderName": "tinygreens" }
+      "options": {
+        "activate": true,
+        "targetFolderName": "tinygreens"
+      }
     },
     {
       "step": "setSiteOptions",
-      "options": { "blogname": "Tiny Greens", "blogdescription": "Microgreens in Brisbane", "permalink_structure": "/%postname%/" }
+      "options": {
+        "blogname": "Tiny Greens",
+        "blogdescription": "Microgreens in Brisbane",
+        "permalink_structure": "/%postname%/"
+      }
     },
     {
       "step": "installPlugin",
-      "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" },
-      "options": { "activate": true }
+      "pluginData": {
+        "resource": "wordpress.org/plugins",
+        "slug": "woocommerce"
+      },
+      "options": {
+        "activate": true
+      }
     },
     {
       "step": "writeFile",
       "path": "/wordpress/tg-seed.php",
-      "data": { "resource": "url", "url": "https://raw.githubusercontent.com/TinyGreens/tinygreens-website-preview/main/local/seed.php" }
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/TinyGreens/tinygreens-website-preview/main/local/seed.php"
+      }
     },
-    { "step": "runPHP", "code": "<?php require '/wordpress/tg-seed.php';" }
+    {
+      "step": "writeFile",
+      "path": "/wordpress/product-drafts.php",
+      "data": {
+        "resource": "url",
+        "url": "https://raw.githubusercontent.com/TinyGreens/tinygreens-website-preview/main/local/product-drafts.php"
+      }
+    },
+    {
+      "step": "runPHP",
+      "code": "<?php require '/wordpress/tg-seed.php';"
+    }
   ]
 }

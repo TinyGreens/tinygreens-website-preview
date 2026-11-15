@@ -397,7 +397,8 @@ h1 em, h2 em {
 .tg-pp-cat { margin: 8px 0 0 !important; }
 .tg-pp-cat a { color: inherit; text-decoration: none; }
 .tg-pp-title { margin-top: 14px !important; margin-bottom: 0 !important; font-size: clamp(44px, 5vw, 72px) !important; }
-.tg-pp-desc { margin-top: 20px !important; color: var(--wp--preset--color--ink-soft); }
+.tg-pp-desc { margin-top: 18px !important; max-width: 34em; }
+.tg-pp-desc p { margin: 0; font-size: clamp(18px, 1.5vw, 20px); line-height: 1.55; color: var(--wp--preset--color--ink-soft); }
 .tg-pp-desc:empty { display: none; }
 .tg-pp-facts { margin: 28px 0 0; border-top: 1px solid var(--wp--preset--color--line); }
 .tg-pp-facts > div { display: grid; grid-template-columns: 120px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--wp--preset--color--line); }
