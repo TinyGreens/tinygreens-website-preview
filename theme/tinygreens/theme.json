@@ -75,12 +75,43 @@
         {
           "slug": "serif",
           "name": "Newsreader",
-          "fontFamily": "\"Newsreader\", Georgia, serif"
+          "fontFamily": "\"Newsreader\", Georgia, serif",
+          "fontFace": [
+            {
+              "fontFamily": "Newsreader",
+              "fontStyle": "normal",
+              "fontWeight": "300 600",
+              "fontDisplay": "swap",
+              "src": [
+                "file:./assets/fonts/newsreader-latin.woff2"
+              ]
+            },
+            {
+              "fontFamily": "Newsreader",
+              "fontStyle": "italic",
+              "fontWeight": "300 500",
+              "fontDisplay": "swap",
+              "src": [
+                "file:./assets/fonts/newsreader-italic-latin.woff2"
+              ]
+            }
+          ]
         },
         {
           "slug": "sans",
           "name": "Instrument Sans",
-          "fontFamily": "\"Instrument Sans\", system-ui, -apple-system, \"Segoe UI\", sans-serif"
+          "fontFamily": "\"Instrument Sans\", system-ui, -apple-system, \"Segoe UI\", sans-serif",
+          "fontFace": [
+            {
+              "fontFamily": "Instrument Sans",
+              "fontStyle": "normal",
+              "fontWeight": "400 600",
+              "fontDisplay": "swap",
+              "src": [
+                "file:./assets/fonts/instrument-sans-latin.woff2"
+              ]
+            }
+          ]
         }
       ],
       "fontSizes": [

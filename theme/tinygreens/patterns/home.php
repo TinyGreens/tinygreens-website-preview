@@ -29,9 +29,6 @@ $img = function ( $file ) {
 				<!-- wp:button -->
 				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Apply for a trade account</a></div>
 				<!-- /wp:button -->
-				<!-- wp:button {"className":"is-style-outline"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">Browse products</a></div>
-				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
 			<!-- wp:paragraph {"className":"tg-joined"} -->
@@ -42,10 +39,10 @@ $img = function ( $file ) {
 		<!-- wp:column {"className":"tg-hero-media"} -->
 		<div class="wp-block-column tg-hero-media">
 			<!-- wp:image {"sizeSlug":"full","className":"tg-hero-img"} -->
-			<figure class="wp-block-image size-full tg-hero-img"><img src="<?php echo $img( 'lemon-balm-tray.jpg' ); ?>" alt="A tray of lemon balm microherbs grown by Tiny Greens" fetchpriority="high"/><figcaption class="wp-element-caption">Lemon balm, grown in Brisbane</figcaption></figure>
+			<figure class="wp-block-image size-full tg-hero-img"><img <?php echo tg_img( 'lemon-balm-tray.jpg', '(max-width: 781px) 100vw, 45vw' ); ?> alt="A tray of lemon balm microherbs grown by Tiny Greens" fetchpriority="high"/><figcaption class="wp-element-caption">Lemon balm, grown in Brisbane</figcaption></figure>
 			<!-- /wp:image -->
 			<!-- wp:image {"sizeSlug":"large","className":"tg-hero-inset"} -->
-			<figure class="wp-block-image size-large tg-hero-inset"><img src="<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>" alt="A crate of capsicums, chillies, avocados and spring onions"/></figure>
+			<figure class="wp-block-image size-large tg-hero-inset"><img <?php echo tg_img( 'produce-crate-PLACEHOLDER-unsplash.jpg', '(max-width: 781px) 40vw, 260px' ); ?> alt="A crate of capsicums, chillies, avocados and spring onions"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -93,7 +90,7 @@ foreach ( $paths as $p ) :
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:cover {"url":"<?php echo $img( 'grow-room-amaranth.jpg' ); ?>","dimRatio":0,"minHeight":560,"contentPosition":"bottom left","className":"tg-side tg-reveal"} -->
-			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="Red amaranth microgreens growing under lights in the Tiny Greens grow room" src="<?php echo $img( 'grow-room-amaranth.jpg' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="Red amaranth microgreens growing under lights in the Tiny Greens grow room" <?php echo tg_img( 'grow-room-amaranth.jpg', '(max-width: 781px) 100vw, 50vw' ); ?> loading="lazy" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Grown by us</p><!-- /wp:paragraph -->
 				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Microherbs</h3><!-- /wp:heading -->
 				<!-- wp:paragraph --><p>Grown to order in Brisbane and cut within 12 hours of delivery, for garnish, colour and flavour.</p><!-- /wp:paragraph -->
@@ -105,7 +102,7 @@ foreach ( $paths as $p ) :
 		<!-- wp:column -->
 		<div class="wp-block-column">
 			<!-- wp:cover {"url":"<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>","dimRatio":0,"minHeight":560,"contentPosition":"bottom left","className":"tg-side tg-reveal"} -->
-			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="A wooden crate of capsicums, chillies, avocados and spring onions" src="<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
+			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="A wooden crate of capsicums, chillies, avocados and spring onions" <?php echo tg_img( 'produce-crate-PLACEHOLDER-unsplash.jpg', '(max-width: 781px) 100vw, 50vw' ); ?> loading="lazy" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Sourced by us</p><!-- /wp:paragraph -->
 				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Fruit, veg &amp; mushrooms</h3><!-- /wp:heading -->
 				<!-- wp:paragraph --><p>Fresh fruit and vegetables, specialty mushrooms, edible flowers and fresh herbs, on the same delivery as your micros.</p><!-- /wp:paragraph -->
@@ -152,7 +149,7 @@ foreach ( $cards as $c ) :
 		<!-- wp:group {"className":"tg-card tg-reveal","layout":{"type":"default"}} -->
 		<div class="wp-block-group tg-card tg-reveal">
 			<!-- wp:image {"sizeSlug":"large"} -->
-			<figure class="wp-block-image size-large"><a href="<?php echo esc_url( $link ); ?>" tabindex="-1" aria-hidden="true"><img src="<?php echo $img( $c[0] ); ?>" alt="<?php echo esc_attr( $c[1] ); ?>" loading="lazy"/></a></figure>
+			<figure class="wp-block-image size-large"><a href="<?php echo esc_url( $link ); ?>" tabindex="-1" aria-hidden="true"><img <?php echo tg_img( $c[0], '(max-width: 600px) 50vw, (max-width: 1240px) 25vw, 300px' ); ?> alt="<?php echo esc_attr( $c[1] ); ?>" loading="lazy"/></a></figure>
 			<!-- /wp:image -->
 			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $c[2] ); ?></a></h3><!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"tg-meta"} --><p class="tg-meta"><span><?php echo esc_html( $c[3] ? $c[3] : 'Sizes on request' ); ?></span><a class="tg-enquire" href="<?php echo esc_url( $link ); ?>">View details →<span class="screen-reader-text">: <?php echo esc_html( $c[2] ); ?></span></a></p><!-- /wp:paragraph -->
@@ -234,7 +231,7 @@ foreach ( $steps as $s ) :
 		<!-- wp:column {"width":"45%"} -->
 		<div class="wp-block-column tg-reveal" style="flex-basis:45%">
 			<!-- wp:image {"sizeSlug":"large"} -->
-			<figure class="wp-block-image size-large"><img src="<?php echo $img( 'salad-mix-punnet.jpg' ); ?>" alt="A punnet of mixed microgreens" loading="lazy"/></figure>
+			<figure class="wp-block-image size-large"><img <?php echo tg_img( 'salad-mix-punnet.jpg', '(max-width: 781px) 100vw, 45vw' ); ?> alt="A punnet of mixed microgreens" loading="lazy"/></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->
@@ -254,9 +251,6 @@ foreach ( $steps as $s ) :
 				<!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="sms:+61458278951">Send a text</a></div><!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
-			<!-- wp:paragraph {"className":"tg-note"} -->
-			<p class="tg-note"><strong>Run a café or restaurant?</strong> Contact us for wholesale pricing. <a class="tg-text-link" href="/wholesale/#apply">Apply for a trade account</a></p>
-			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
 	</div>

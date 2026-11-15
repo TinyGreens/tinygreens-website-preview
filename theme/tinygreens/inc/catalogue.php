@@ -84,3 +84,24 @@ add_filter( 'render_block_core/post-featured-image', function ( $html ) {
 	}
 	return preg_replace( '#</figure>\s*$#', '<figcaption class="tg-photo-note">' . esc_html( $caption ) . '</figcaption></figure>', $html, 1 );
 }, 20 );
+
+/**
+ * Catalogue only: don't load WooCommerce's shop scripts and styles for visitors (cart,
+ * add-to-cart, jQuery, and the "order attribution" tracking cookies). The theme styles
+ * everything itself. WordPress admin and product editing are unaffected.
+ */
+if ( class_exists( 'WooCommerce' ) ) {
+	add_filter( 'woocommerce_enqueue_styles', '__return_empty_array' );
+	add_action( 'wp_enqueue_scripts', function () {
+		foreach ( array( 'wc-add-to-cart', 'woocommerce', 'wc-cart-fragments', 'sourcebuster-js', 'wc-order-attribution', 'js-cookie', 'jquery-blockui', 'wc-single-product', 'zoom', 'flexslider', 'photoswipe-ui-default' ) as $h ) {
+			wp_dequeue_script( $h );
+		}
+		foreach ( array( 'wc-blocks-style', 'woocommerce-general', 'woocommerce-layout', 'woocommerce-smallscreen', 'woocommerce-blocktheme', 'photoswipe-default-skin' ) as $h ) {
+			wp_dequeue_style( $h );
+		}
+	}, 100 );
+	// WooCommerce adds its blocks stylesheet late (while rendering); drop it at print time.
+	add_filter( 'style_loader_tag', function ( $tag, $handle ) {
+		return 'wc-blocks-style' === $handle ? '' : $tag;
+	}, 10, 2 );
+}

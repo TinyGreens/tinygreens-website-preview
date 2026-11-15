@@ -42,7 +42,7 @@ $img = function ( $file ) {
 		<!-- wp:column {"className":"tg-hero-media"} -->
 		<div class="wp-block-column tg-hero-media">
 			<!-- wp:image {"sizeSlug":"full","className":"tg-hero-img tg-hero-img--centre"} -->
-			<figure class="wp-block-image size-full tg-hero-img tg-hero-img--centre"><img src="<?php echo $img( 'lemon-balm-tray.jpg' ); ?>" alt="A tray of lemon balm microherbs" fetchpriority="high"/><figcaption class="wp-element-caption">Lemon balm, grown in Brisbane</figcaption></figure>
+			<figure class="wp-block-image size-full tg-hero-img tg-hero-img--centre"><img <?php echo tg_img( 'lemon-balm-tray.jpg', '(max-width: 781px) 100vw, 45vw' ); ?> alt="A tray of lemon balm microherbs" fetchpriority="high"/><figcaption class="wp-element-caption">Lemon balm, grown in Brisbane</figcaption></figure>
 			<!-- /wp:image -->
 		</div>
 		<!-- /wp:column -->

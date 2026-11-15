@@ -95,7 +95,7 @@ $chapters = array(
 				<p class="tg-chapter-lead">We began supplying just one or two local customers who appreciated the quality and freshness of what we were growing. Through word of mouth, consistency and strong relationships, the business gradually grew.</p>
 				<!-- /wp:paragraph -->
 				<!-- wp:image {"sizeSlug":"large","className":"tg-story-photo tg-reveal"} -->
-				<figure class="wp-block-image size-large tg-story-photo tg-reveal"><img src="<?php echo $img( 'grow-room-amaranth.jpg' ); ?>" alt="Red amaranth microgreens growing under lights in the Tiny Greens grow room" loading="lazy"/><figcaption class="wp-element-caption">Red amaranth in our grow room</figcaption></figure>
+				<figure class="wp-block-image size-large tg-story-photo tg-reveal"><img <?php echo tg_img( 'grow-room-amaranth.jpg', '(max-width: 781px) 100vw, 60vw' ); ?> alt="Red amaranth microgreens growing under lights in the Tiny Greens grow room" loading="lazy"/><figcaption class="wp-element-caption">Red amaranth in our grow room</figcaption></figure>
 				<!-- /wp:image -->
 				<!-- wp:paragraph {"className":"tg-pull tg-reveal"} -->
 				<p class="tg-pull tg-reveal">“What has always driven me isn’t just growing great produce. It’s the satisfaction of working closely with chefs and café owners, understanding exactly what they need, and being able to consistently deliver the quality they expect.”</p>
