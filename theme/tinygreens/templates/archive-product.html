@@ -1,0 +1,34 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group">
+	<!-- wp:pattern {"slug":"tinygreens/shop-intro"} /-->
+
+	<!-- wp:group {"className":"tg-section tg-range tg-growlist","style":{"spacing":{"padding":{"top":"0"}}},"layout":{"type":"constrained","contentSize":"1240px"}} -->
+	<div class="wp-block-group tg-section tg-range tg-growlist" style="padding-top:0">
+		<!-- wp:query {"queryId":2,"query":{"inherit":true,"postType":"product"},"className":"tg-products"} -->
+		<div class="wp-block-query tg-products">
+			<!-- wp:post-template {"className":"tg-cards"} -->
+				<!-- wp:group {"className":"tg-card","layout":{"type":"default"}} -->
+				<div class="wp-block-group tg-card">
+					<!-- wp:post-featured-image {"isLink":true,"sizeSlug":"medium_large"} /-->
+					<!-- wp:post-terms {"term":"product_cat","className":"tg-card-cat"} /-->
+					<!-- wp:post-title {"level":3,"isLink":true} /-->
+					<!-- wp:post-excerpt {"className":"tg-notes","excerptLength":20} /-->
+					<!-- wp:read-more {"content":"Enquire →","className":"tg-enquire"} /-->
+				</div>
+				<!-- /wp:group -->
+			<!-- /wp:post-template -->
+			<!-- wp:query-no-results -->
+				<!-- wp:paragraph --><p>Our grow list is being updated. Call or text 0458 278 951 to ask what’s available.</p><!-- /wp:paragraph -->
+			<!-- /wp:query-no-results -->
+		</div>
+		<!-- /wp:query -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:pattern {"slug":"tinygreens/how-to-order"} /-->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"div"} /-->

@@ -1,0 +1,35 @@
+{
+  "$schema": "https://playground.wordpress.net/blueprint-schema.json",
+  "landingPage": "/",
+  "preferredVersions": { "php": "8.3", "wp": "latest" },
+  "features": { "networking": true },
+  "login": true,
+  "steps": [
+    {
+      "step": "installTheme",
+      "themeData": {
+        "resource": "git:directory",
+        "url": "https://github.com/TinyGreens/tinygreens-website-preview",
+        "ref": "main",
+        "refType": "branch",
+        "path": "theme/tinygreens"
+      },
+      "options": { "activate": true, "targetFolderName": "tinygreens" }
+    },
+    {
+      "step": "setSiteOptions",
+      "options": { "blogname": "Tiny Greens", "blogdescription": "Microgreens in Brisbane", "permalink_structure": "/%postname%/" }
+    },
+    {
+      "step": "installPlugin",
+      "pluginData": { "resource": "wordpress.org/plugins", "slug": "woocommerce" },
+      "options": { "activate": true }
+    },
+    {
+      "step": "writeFile",
+      "path": "/wordpress/tg-seed.php",
+      "data": { "resource": "url", "url": "https://raw.githubusercontent.com/TinyGreens/tinygreens-website-preview/main/local/seed.php" }
+    },
+    { "step": "runPHP", "code": "<?php require '/wordpress/tg-seed.php';" }
+  ]
+}
