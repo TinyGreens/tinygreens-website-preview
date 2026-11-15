@@ -1,0 +1,42 @@
+<!-- wp:template-part {"slug":"header","tagName":"header"} /-->
+
+<!-- wp:group {"tagName":"main","layout":{"type":"default"}} -->
+<main class="wp-block-group">
+	<!-- wp:group {"className":"tg-section tg-pp","layout":{"type":"constrained","contentSize":"1240px"}} -->
+	<div class="wp-block-group tg-section tg-pp">
+		<!-- wp:paragraph {"className":"tg-pp-back"} --><p class="tg-pp-back"><a href="/shop/">← Back to the grow list</a></p><!-- /wp:paragraph -->
+		<!-- wp:columns {"className":"tg-pp-grid"} -->
+		<div class="wp-block-columns tg-pp-grid">
+			<!-- wp:column {"width":"50%","className":"tg-pp-media"} -->
+			<div class="wp-block-column tg-pp-media" style="flex-basis:50%">
+				<!-- wp:post-featured-image {"sizeSlug":"large","className":"tg-pp-photo"} /-->
+			</div>
+			<!-- /wp:column -->
+			<!-- wp:column {"className":"tg-pp-info"} -->
+			<div class="wp-block-column tg-pp-info">
+				<!-- wp:post-terms {"term":"product_cat","className":"tg-eyebrow tg-pp-cat"} /-->
+				<!-- wp:post-title {"level":1,"className":"tg-page-title tg-pp-title"} /-->
+				<!-- wp:post-content {"className":"tg-pp-desc","layout":{"type":"default"}} /-->
+				<!-- wp:shortcode -->[tinygreens_product_panel]<!-- /wp:shortcode -->
+			</div>
+			<!-- /wp:column -->
+		</div>
+		<!-- /wp:columns -->
+	</div>
+	<!-- /wp:group -->
+
+	<!-- wp:group {"className":"tg-section tg-pp-more","layout":{"type":"constrained","contentSize":"1240px"}} -->
+	<div class="wp-block-group tg-section tg-pp-more">
+		<!-- wp:group {"className":"tg-pp-more-head","layout":{"type":"flex","flexWrap":"wrap","justifyContent":"space-between","verticalAlignment":"bottom"}} -->
+		<div class="wp-block-group tg-pp-more-head">
+			<!-- wp:heading {"className":"tg-order-title"} --><h2 class="wp-block-heading tg-order-title">More from the <em>grow list.</em></h2><!-- /wp:heading -->
+			<!-- wp:paragraph {"className":"tg-route-link"} --><p class="tg-route-link"><a href="/shop/">See everything we grow</a></p><!-- /wp:paragraph -->
+		</div>
+		<!-- /wp:group -->
+		<!-- wp:shortcode -->[tinygreens_more_products]<!-- /wp:shortcode -->
+	</div>
+	<!-- /wp:group -->
+</main>
+<!-- /wp:group -->
+
+<!-- wp:template-part {"slug":"footer","tagName":"div"} /-->

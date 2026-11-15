@@ -58,3 +58,4 @@ require_once get_theme_file_path( 'inc/trade-enquiry.php' );
 
 /** Product listings without prices or checkout. */
 require_once get_theme_file_path( 'inc/catalogue.php' );
+require_once get_theme_file_path( 'inc/product-page.php' );

@@ -36,6 +36,9 @@ add_filter( 'render_block_core/post-featured-image', function ( $html, $block ) 
 	if ( ! empty( $block['attrs']['className'] ) ) {
 		$class .= ' ' . $block['attrs']['className'];
 	}
+	if ( is_singular( 'product' ) && get_the_ID() === get_queried_object_id() ) {
+		return sprintf( '<figure class="%s"><span>Photo coming soon</span></figure>', esc_attr( $class ) );
+	}
 	return sprintf(
 		'<figure class="%s"><a href="%s" aria-label="%s"><span>Photo coming soon</span></a></figure>',
 		esc_attr( $class ),
