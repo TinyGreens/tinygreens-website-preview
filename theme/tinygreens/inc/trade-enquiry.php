@@ -34,7 +34,7 @@ function tg_enquiry_fields() {
 function tg_enquiry_options() {
 	return array(
 		'type'  => array( 'Café', 'Restaurant', 'Catering', 'Other' ),
-		'wants' => array( 'Microherbs', 'Fruit & vegetables', 'Mushrooms', 'Edible flowers' ),
+		'wants' => array( 'Microherbs', 'Fruit & veg', 'Edible flowers' ),
 	);
 }
 

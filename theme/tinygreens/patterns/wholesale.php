@@ -72,8 +72,7 @@ $img = function ( $file ) {
 <?php
 $cats = array(
 	array( 'Grown by us', 'Microherbs', 'Chefs Mix, Salad Mix, Red Amaranth, Pea Shoots, Pink and Purple Radish, Red and Green Shiso, Coriander, Bronze Fennel, Red Vein Sorrel and more, plus live trays of watercress and red vein sorrel.' ),
-	array( 'Sourced by us', 'Fruit &amp; vegetables', 'Leafy greens, tomatoes, onions, cucumbers, avocados, citrus, apples, bananas and fresh herbs.' ),
-	array( 'Sourced by us', 'Specialty mushrooms', 'Enoki, king oyster, shiitake, oyster, shimeji, swiss brown, button, flat and portobello.' ),
+	array( 'Sourced by us', 'Fruit &amp; veg', 'Leafy greens, tomatoes, onions, cucumbers, avocados, citrus, apples, bananas and fresh herbs, plus mushrooms from button and swiss brown to enoki, shiitake and king oyster.' ),
 	array( 'Sourced by us', 'Edible flowers', 'Cornflowers and mixed edible flowers for plating and desserts.' ),
 );
 foreach ( $cats as $c ) :
