@@ -70,9 +70,9 @@ $chapters = array(
 					<svg viewBox="0 0 520 300" aria-hidden="true">
 						<g class="tg-rack-glow"><path d="M150 92 L120 196 H400 L370 92 Z"/></g>
 						<rect class="tg-rack-light" x="146" y="80" width="228" height="12" rx="6"/>
-						<line class="tg-rack-wire" x1="200" y1="40" x2="200" y2="80"/><line class="tg-rack-wire" x1="320" y1="40" x2="320" y2="80"/>
-						<line class="tg-rack-post" x1="100" y1="30" x2="100" y2="270"/><line class="tg-rack-post" x1="420" y1="30" x2="420" y2="270"/>
-						<line class="tg-rack-bar" x1="100" y1="40" x2="420" y2="40"/>
+						<line pathLength="1" class="tg-rack-wire" x1="200" y1="40" x2="200" y2="80"/><line pathLength="1" class="tg-rack-wire" x1="320" y1="40" x2="320" y2="80"/>
+						<line pathLength="1" class="tg-rack-post" x1="100" y1="30" x2="100" y2="270"/><line pathLength="1" class="tg-rack-post" x1="420" y1="30" x2="420" y2="270"/>
+						<line pathLength="1" class="tg-rack-bar" x1="100" y1="40" x2="420" y2="40"/>
 						<rect class="tg-rack-shelf" x="100" y="210" width="320" height="8" rx="2"/>
 						<rect class="tg-rack-tray" x="140" y="192" width="240" height="18" rx="3"/>
 						<g class="tg-rack-sprouts">
@@ -113,9 +113,7 @@ $chapters = array(
 				<!-- wp:paragraph -->
 				<p>What began as a specialist microherb operation naturally evolved into wholesale fresh produce distribution, allowing us to support our hospitality customers with a broader range of quality fruit and vegetables.</p>
 				<!-- /wp:paragraph -->
-				<!-- wp:image {"sizeSlug":"large","className":"tg-story-photo tg-story-photo--wide tg-reveal"} -->
-				<figure class="wp-block-image size-large tg-story-photo tg-story-photo--wide tg-reveal"><img src="<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>" alt="A crate of capsicums, chillies, avocados and spring onions" loading="lazy"/><figcaption class="wp-element-caption">Placeholder photo (Unsplash)</figcaption></figure>
-				<!-- /wp:image -->
+				<?php /* Real produce photo goes here when David supplies one (Unsplash placeholder removed). */ ?>
 			</div>
 			<!-- /wp:group -->
 

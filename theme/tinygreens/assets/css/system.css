@@ -305,6 +305,8 @@ h1 em, h2 em {
 @keyframes tg-unveil { from { clip-path: inset(0 0 100% 0 round 16px); } to { clip-path: inset(0 0 0 0 round 16px); } }
 @keyframes tg-light-on { from { opacity: 0; } }
 @keyframes tg-grow { from { transform: scaleY(0); } }
+@keyframes tg-draw { from { stroke-dashoffset: 1; } to { stroke-dashoffset: 0; } }
+@keyframes tg-flicker { 0% { opacity: 0; } 30% { opacity: 1; } 45% { opacity: .35; } 60%, 100% { opacity: 1; } }
 @media (prefers-reduced-motion: no-preference) {
 	.tg-js .tg-story-hero .tg-eyebrow { animation: tg-rise 700ms var(--tg-ease) 80ms both; }
 	.tg-js .tg-story-hero .tg-page-title .tg-line > span { animation: tg-line 900ms var(--tg-ease) 140ms both; }
@@ -314,8 +316,17 @@ h1 em, h2 em {
 	.tg-js .tg-story-photo.tg-reveal { opacity: 1; transform: none; }
 	.tg-js .tg-story-photo.tg-reveal.is-in { animation: tg-unveil 1100ms var(--tg-ease) both; }
 	.tg-js .tg-story-photo.tg-reveal.is-in img { animation: tg-settle 1400ms var(--tg-ease) both; }
-	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-glow { animation: tg-light-on 900ms ease-out 500ms both; }
-	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-sprouts path { transform-box: fill-box; transform-origin: 50% 100%; animation: tg-grow 800ms var(--tg-ease) both; animation-delay: calc(700ms + var(--s, 0) * 30ms); }
+	/* Rack "Lights on" (about 2.5 s, plays once): frame draws, light flickers on, glow, sprouts rise left to right, captions */
+	.tg-js .tg-rack.tg-reveal.is-in :is(.tg-rack-post, .tg-rack-bar, .tg-rack-wire) { stroke-dasharray: 1; animation: tg-draw 600ms var(--tg-ease) both; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-bar { animation-delay: 200ms; animation-duration: 500ms; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-wire { animation-delay: 500ms; animation-duration: 250ms; }
+	.tg-js .tg-rack.tg-reveal.is-in :is(.tg-rack-shelf, .tg-rack-tray) { animation: tg-light-on 450ms ease-out 500ms both; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-light { animation: tg-flicker 450ms linear 750ms both; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-glow { animation: tg-light-on 600ms ease-out 1050ms both; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-sprouts path { transform-box: fill-box; transform-origin: 50% 100%; animation: tg-grow 500ms var(--tg-ease) both; animation-delay: calc(1150ms + var(--s, 0) * 45ms); }
+	.tg-js .tg-rack.tg-reveal.is-in figcaption span { animation: tg-rise 450ms var(--tg-ease) 1850ms both; }
+	.tg-js .tg-rack.tg-reveal.is-in figcaption span:nth-child(2) { animation-delay: 2000ms; }
+	.tg-js .tg-rack.tg-reveal.is-in figcaption span:nth-child(3) { animation-delay: 2150ms; }
 }
 
 @media (max-width: 781px) {
@@ -444,3 +455,20 @@ h1 em, h2 em {
 /* Plain text pages (Terms, Privacy): calmer headings */
 .wp-block-post-content > h2.wp-block-heading { font-size: clamp(24px, 2.2vw, 30px); margin-top: 40px; margin-bottom: 8px; }
 .wp-block-post-content > p em { font-style: normal; color: var(--wp--preset--color--ink-soft); }
+
+/* =========================================================
+   Final polish: phone readability and fewer repeats
+   ========================================================= */
+.tg-route .tg-tag { font-size: 13px; letter-spacing: .12em; }
+@media (max-width: 781px) {
+	/* Small labels and captions up to 14px on phones */
+	.tg-eyebrow, .tg-tag, .tg-path-label, .tg-card-cat, .tg-chapter-label, .tg-contact-label,
+	.tg-contact-base span, .tg-pp-facts dt, .tg-pp-order .tg-pp-order-label, .tg-route .tg-tag,
+	.wp-element-caption, .tg-footer h4, .tg-footer .wp-block-heading { font-size: 14px !important; }
+	.tg-ph-tag { font-size: 13px !important; }
+	.tg-legal, .tg-legal p { font-size: 15px !important; }
+	/* Repeats: the quick-links strip right below the hero already offers "Browse the grow list",
+	   and the trade section right above "For home" already covers café enquiries. */
+	.tg-hero .tg-actions .is-style-outline { display: none; }
+	#for-home .tg-note { display: none; }
+}
