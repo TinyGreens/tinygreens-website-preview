@@ -17,7 +17,7 @@
 			<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">For home</p><!-- /wp:paragraph -->
 			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Call or text to order</h3><!-- /wp:heading -->
 			<!-- wp:paragraph -->
-			<p>We deliver to homes within 20 km of Wynnum, or you’re welcome to pick up from us in Wynnum. Delivery is free within 5 km, $5 up to 10 km and $11.99 up to 20 km (including GST).</p>
+			<p>We deliver to homes within 20 km of Wynnum, or you’re welcome to pick up from us in Wynnum. Delivery is free within 5 km, $5 up to 10 km and $11.99 up to 20 km.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
@@ -32,7 +32,7 @@
 			<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">For cafés &amp; restaurants</p><!-- /wp:paragraph -->
 			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Open a trade account</h3><!-- /wp:heading -->
 			<!-- wp:paragraph -->
-			<p>Get in touch for wholesale pricing. Trade customers order online from their own price list, with fruit, veg, mushrooms and edible flowers on the same delivery.</p>
+			<p>Get in touch for wholesale pricing. Trade customers order online, with fruit, veg, mushrooms and edible flowers on the same delivery.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">

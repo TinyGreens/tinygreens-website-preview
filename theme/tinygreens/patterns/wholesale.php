@@ -62,7 +62,7 @@ $img = function ( $file ) {
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph -->
-		<p>A sample of what we carry. The range changes with the seasons, and trade customers see the full current list in our online order portal.</p>
+		<p>A sample of what we carry. The range changes with the seasons, so ask us for the full current list.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -115,7 +115,7 @@ foreach ( $cats as $c ) :
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph -->
-		<p>Approved venues get their own price list, online ordering and a real person on the other end of the phone.</p>
+		<p>Approved venues get trade pricing, online ordering and a real person on the other end of the phone.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->

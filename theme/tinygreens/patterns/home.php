@@ -22,7 +22,7 @@ $img = function ( $file ) {
 			<h1 class="wp-block-heading tg-hero-title"><span class="tg-line"><span>Microherbs we grow.</span></span> <span class="tg-line"><span><em>Produce</em> we supply.</span></span></h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"tg-lead"} -->
-			<p class="tg-lead">Brisbane microgreens and microherbs, grown by us to order, plus fresh fruit, vegetables, mushrooms and edible flowers for cafés and restaurants. One local supplier, one delivery.</p>
+			<p class="tg-lead">Brisbane microgreens and microherbs grown by us, plus fresh fruit, vegetables, mushrooms and edible flowers for cafés and restaurants. One local supplier, one delivery.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons {"className":"tg-actions"} -->
 			<div class="wp-block-buttons tg-actions">
@@ -56,10 +56,10 @@ $img = function ( $file ) {
 	<div class="wp-block-group tg-paths">
 <?php
 $paths = array(
-	array( 'https://wholesale.tinygreens.com.au/', 'Trade customers', 'Order online' ),
-	array( '/wholesale/#apply', 'New venue', 'Apply for a trade account' ),
-	array( 'tel:+61458278951', 'For home', 'Call or text to order' ),
-	array( '/shop/', 'Browse', 'See the grow list' ),
+	array( 'https://wholesale.tinygreens.com.au/', 'Wholesale · customers', 'Order online' ),
+	array( '/wholesale/#apply', 'Wholesale · new venues', 'Apply for a trade account' ),
+	array( 'tel:+61458278951', 'Retail · for home', 'Call or text to order' ),
+	array( '/shop/', 'Products', 'Browse the grow list' ),
 );
 foreach ( $paths as $p ) :
 	?>
@@ -96,7 +96,7 @@ foreach ( $paths as $p ) :
 			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="Red amaranth microgreens growing under lights in the Tiny Greens grow room" src="<?php echo $img( 'grow-room-amaranth.jpg' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Grown by us</p><!-- /wp:paragraph -->
 				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Microherbs</h3><!-- /wp:heading -->
-				<!-- wp:paragraph --><p>Grown to order in Brisbane and cut close to delivery, for garnish, colour and flavour.</p><!-- /wp:paragraph -->
+				<!-- wp:paragraph --><p>Grown by us in Brisbane, for garnish, colour and flavour.</p><!-- /wp:paragraph -->
 				<!-- wp:paragraph {"className":"tg-text-link"} --><p class="tg-text-link"><a href="/shop/">See the range →</a></p><!-- /wp:paragraph -->
 			</div></div>
 			<!-- /wp:cover -->
@@ -140,21 +140,23 @@ foreach ( $paths as $p ) :
 	<div class="wp-block-group tg-cards">
 <?php
 $cards = array(
-	array( 'red-amaranth-punnet.jpg', 'Red amaranth microgreens in a punnet', 'Red Amaranth', 'Vivid magenta, mild and earthy', '50g punnet' ),
-	array( 'chefs-mix-punnet.jpg', 'Chefs Mix microgreens in a punnet', 'Chefs Mix', 'Cabbage, radish and amaranth', '100g punnet · 500g bag' ),
-	array( 'salad-mix-punnet.jpg', 'Salad Mix microgreens in a punnet', 'Salad Mix', 'Crisp, mild, an everyday base', '100g punnet · 500g bag' ),
-	array( 'lemon-balm-tray.jpg', 'Lemon balm microherbs', 'Lemon Balm', 'Bright, citrusy and fresh', '50g punnet' ),
+	// photo, alt text, name, sizes (from the wholesale price list; blank = not confirmed).
+	array( 'red-amaranth-punnet.jpg', 'Red amaranth microgreens in a punnet', 'Red Amaranth', '' ),
+	array( 'chefs-mix-punnet.jpg', 'Chefs Mix microgreens in a punnet', 'Chefs Mix', '100g · 500g' ),
+	array( 'salad-mix-punnet.jpg', 'Salad Mix microgreens in a punnet', 'Salad Mix', '100g · 500g' ),
+	array( 'lemon-balm-tray.jpg', 'Lemon balm microherbs', 'Lemon Balm', '' ),
 );
 foreach ( $cards as $c ) :
+	$found = function_exists( 'wc_get_products' ) ? get_posts( array( 'post_type' => 'product', 'title' => $c[2], 'numberposts' => 1, 'fields' => 'ids' ) ) : array();
+	$link  = $found ? get_permalink( $found[0] ) : home_url( '/shop/' );
 	?>
 		<!-- wp:group {"className":"tg-card tg-reveal","layout":{"type":"default"}} -->
 		<div class="wp-block-group tg-card tg-reveal">
 			<!-- wp:image {"sizeSlug":"large"} -->
-			<figure class="wp-block-image size-large"><img src="<?php echo $img( $c[0] ); ?>" alt="<?php echo esc_attr( $c[1] ); ?>" loading="lazy"/></figure>
+			<figure class="wp-block-image size-large"><a href="<?php echo esc_url( $link ); ?>" tabindex="-1" aria-hidden="true"><img src="<?php echo $img( $c[0] ); ?>" alt="<?php echo esc_attr( $c[1] ); ?>" loading="lazy"/></a></figure>
 			<!-- /wp:image -->
-			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading"><?php echo esc_html( $c[2] ); ?></h3><!-- /wp:heading -->
-			<!-- wp:paragraph {"className":"tg-notes"} --><p class="tg-notes"><?php echo esc_html( $c[3] ); ?></p><!-- /wp:paragraph -->
-			<!-- wp:paragraph {"className":"tg-meta"} --><p class="tg-meta"><span><?php echo esc_html( $c[4] ); ?></span><strong>Enquire</strong></p><!-- /wp:paragraph -->
+			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $c[2] ); ?></a></h3><!-- /wp:heading -->
+			<!-- wp:paragraph {"className":"tg-meta"} --><p class="tg-meta"><span><?php echo esc_html( $c[3] ? $c[3] : 'Sizes on request' ); ?></span><a class="tg-enquire" href="<?php echo esc_url( $link ); ?>">Enquire →</a></p><!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 <?php endforeach; ?>
@@ -185,7 +187,7 @@ foreach ( $cards as $c ) :
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph -->
-		<p>If you run a café, restaurant or catering business, get in touch for wholesale pricing. Approved venues get their own price list, online ordering and a real person on the other end of the phone.</p>
+		<p>If you run a café, restaurant or catering business, get in touch for wholesale pricing. Approved venues get trade pricing, online ordering and a real person on the other end of the phone.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -245,7 +247,7 @@ foreach ( $steps as $s ) :
 			<p class="tg-lead">The same microgreens we grow for Brisbane chefs, for your own kitchen. Just call or send a text to order.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:paragraph {"className":"tg-small-print"} -->
-			<p class="tg-small-print">We deliver to homes within 20 km of Wynnum, or you’re welcome to pick up from us in Wynnum. Delivery is free within 5 km, $5 up to 10 km and $11.99 up to 20 km (including GST).</p>
+			<p class="tg-small-print">We deliver to homes within 20 km of Wynnum, or you’re welcome to pick up from us in Wynnum. Delivery is free within 5 km, $5 up to 10 km and $11.99 up to 20 km.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons -->
 			<div class="wp-block-buttons">
