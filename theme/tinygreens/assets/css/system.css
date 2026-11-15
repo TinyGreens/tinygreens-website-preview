@@ -167,7 +167,7 @@ h1 em, h2 em {
 /* ---------- Grow list (shop) page head ---------- */
 .tg-page-head { padding-bottom: 40px !important; }
 .tg-page-head-grid { gap: clamp(32px, 5vw, 80px) !important; align-items: flex-end !important; }
-.tg-page-title { margin: 18px 0 22px !important; font-size: clamp(42px, 5.1vw, 76px) !important; }
+.tg-page-title { margin-top: 18px !important; margin-bottom: 22px !important; font-size: clamp(42px, 5.1vw, 76px) !important; }
 .tg-page-title .tg-line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
 .tg-page-title .tg-line > span { display: block; }
 .tg-page-head .tg-lead { margin: 0; }
@@ -272,3 +272,86 @@ h1 em, h2 em {
 }
 .tg-path-label { line-height: 1.35 !important; }
 @media (max-width: 781px) { .tg-hero-img figcaption { top: 12px; bottom: auto !important; left: 12px; right: auto; } }
+
+/* =========================================================
+   Our Story (Stage 4)
+   ========================================================= */
+.tg-story-hero { padding-bottom: clamp(32px, 4vw, 56px) !important; }
+.tg-story-hero .tg-lead { max-width: 30em; margin-top: 0; }
+.tg-story-body { padding-bottom: clamp(24px, 3vw, 40px); }
+.tg-story-grid { gap: clamp(32px, 6vw, 96px) !important; align-items: flex-start !important; }
+
+/* Chapter tracker (desktop) */
+.tg-story-nav-col { position: sticky; top: 120px; align-self: flex-start; }
+.admin-bar .tg-story-nav-col { top: 152px; }
+.tg-story-nav ol { list-style: none; margin: 0; padding: 0 0 0 20px; position: relative; border-left: 1px solid var(--wp--preset--color--line); }
+.tg-story-nav ol::before { content: ""; position: absolute; left: -1px; top: 0; width: 1px; height: var(--tg-progress, 0%); background: var(--wp--preset--color--forest); transition: height 400ms var(--tg-ease); }
+.tg-story-nav li { margin: 0; }
+.tg-story-nav a { display: block; padding: 12px 0; text-decoration: none; font-size: 15px; line-height: 1.35; color: var(--wp--preset--color--ink-soft); transition: color var(--tg-fast) var(--tg-ease); }
+.tg-story-nav a:hover { color: var(--wp--preset--color--ink); }
+.tg-story-nav a.is-active { color: var(--wp--preset--color--forest); font-weight: 600; }
+.tg-story-nav-n { display: block; font: italic 400 20px/1 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--leaf-text); margin-bottom: 4px; }
+.tg-story-nav a.is-active .tg-story-nav-n { color: var(--wp--preset--color--beet); }
+
+/* Chapters */
+.tg-chapter { margin: 0 !important; padding: clamp(40px, 5vw, 72px) 0; border-top: 1px solid var(--wp--preset--color--line); scroll-margin-top: 100px; }
+.tg-chapter:first-child { border-top: 0; padding-top: 8px; }
+.tg-chapter-label { margin: 0; font: 600 13px/1 var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--wp--preset--color--leaf-text); }
+.tg-chapter-label span { color: var(--wp--preset--color--ink-soft); font-weight: 500; }
+.tg-chapter h2 { margin: 14px 0 22px; }
+.tg-chapter p { max-width: 36em; color: var(--wp--preset--color--ink-soft); font-size: 18px; line-height: 1.7; }
+.tg-chapter p.tg-chapter-lead { font: 400 clamp(22px, 2vw, 27px)/1.45 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); max-width: 30em; }
+.tg-story-photo { margin: 36px 0 0 !important; border-radius: var(--tg-radius); overflow: hidden; aspect-ratio: 4/3; position: relative; }
+.tg-story-photo--wide { aspect-ratio: 16/9; }
+.tg-story-photo img { width: 100%; height: 100% !important; object-fit: cover; display: block; }
+.tg-story-photo figcaption { position: absolute; left: 14px; bottom: 14px; margin: 0; background: rgba(255, 253, 248, .92); color: var(--wp--preset--color--ink); border-radius: 999px; padding: 7px 13px; font: 500 13px/1 var(--wp--preset--font-family--sans); }
+.tg-pull { margin: 36px 0 0 !important; padding-left: 22px; border-left: 2px solid var(--wp--preset--color--beet); font: italic 400 clamp(21px, 1.9vw, 25px)/1.5 var(--wp--preset--font-family--serif) !important; color: var(--wp--preset--color--ink) !important; max-width: 32em !important; }
+
+/* Chapter 1: one rack, one shelf, one light */
+.tg-rack { margin: 36px 0 0; padding: clamp(20px, 3vw, 36px); border-radius: var(--tg-radius); background: var(--wp--preset--color--paper-2); }
+.tg-rack svg { display: block; width: 100%; max-width: 520px; height: auto; margin: 0 auto; }
+.tg-rack-post, .tg-rack-bar, .tg-rack-wire { stroke: var(--wp--preset--color--forest); stroke-width: 4; stroke-linecap: round; }
+.tg-rack-wire { stroke-width: 1.5; }
+.tg-rack-shelf { fill: var(--wp--preset--color--forest); }
+.tg-rack-light { fill: var(--wp--preset--color--white); stroke: var(--wp--preset--color--forest); stroke-width: 2; }
+.tg-rack-glow path { fill: #FFF6D8; opacity: .85; }
+.tg-rack-tray { fill: var(--wp--preset--color--white); stroke: var(--wp--preset--color--forest); stroke-width: 2; }
+.tg-rack-sprouts path { fill: var(--wp--preset--color--leaf); stroke: var(--wp--preset--color--leaf); stroke-width: 1.4; stroke-linejoin: round; }
+.tg-rack figcaption { display: flex; justify-content: center; gap: clamp(16px, 4vw, 40px); margin-top: 18px; font: 400 clamp(20px, 2vw, 24px)/1 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); }
+.tg-rack figcaption span + span::before { content: "·"; margin-right: clamp(16px, 4vw, 40px); color: var(--wp--preset--color--beet); }
+
+/* Chapter 4: values and sign-off */
+.tg-values { list-style: none; padding: 0; margin: 32px 0 0 !important; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--wp--preset--color--line); border-bottom: 1px solid var(--wp--preset--color--line); }
+.tg-values li { margin: 0; padding: 24px 20px 24px 0; font: 400 clamp(21px, 1.9vw, 26px)/1.2 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); }
+.tg-values li + li { padding-left: 20px; border-left: 1px solid var(--wp--preset--color--line); }
+.tg-values li span { display: block; margin-bottom: 10px; font: italic 400 18px/1 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--beet); }
+.tg-signoff { margin-top: 32px !important; font-size: 16px !important; }
+.tg-signoff strong { display: block; font: italic 400 30px/1.1 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); margin-bottom: 4px; }
+
+/* Story motion: photos unveil, the rack's light switches on; all off with reduced motion */
+@keyframes tg-unveil { from { clip-path: inset(0 0 100% 0 round 16px); } to { clip-path: inset(0 0 0 0 round 16px); } }
+@keyframes tg-light-on { from { opacity: 0; } }
+@keyframes tg-grow { from { transform: scaleY(0); } }
+@media (prefers-reduced-motion: no-preference) {
+	.tg-js .tg-story-hero .tg-eyebrow { animation: tg-rise 700ms var(--tg-ease) 80ms both; }
+	.tg-js .tg-story-hero .tg-page-title .tg-line > span { animation: tg-line 900ms var(--tg-ease) 140ms both; }
+	.tg-js .tg-story-hero .tg-page-title .tg-line + .tg-line > span { animation-delay: 300ms; }
+	.tg-js .tg-story-hero .tg-page-title em { animation: tg-underline 700ms var(--tg-ease) 1000ms both; }
+	.tg-js .tg-story-hero .tg-lead { animation: tg-rise 700ms var(--tg-ease) 420ms both; }
+	.tg-js .tg-story-photo.tg-reveal { opacity: 1; transform: none; }
+	.tg-js .tg-story-photo.tg-reveal.is-in { animation: tg-unveil 1100ms var(--tg-ease) both; }
+	.tg-js .tg-story-photo.tg-reveal.is-in img { animation: tg-settle 1400ms var(--tg-ease) both; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-glow { animation: tg-light-on 900ms ease-out 500ms both; }
+	.tg-js .tg-rack.tg-reveal.is-in .tg-rack-sprouts path { transform-box: fill-box; transform-origin: 50% 100%; animation: tg-grow 800ms var(--tg-ease) both; animation-delay: calc(700ms + var(--s, 0) * 30ms); }
+}
+
+@media (max-width: 781px) {
+	.tg-story-grid { flex-direction: column; }
+	.tg-story-nav-col { display: none; }
+	.tg-chapter p { font-size: 17px; }
+	.tg-values { grid-template-columns: 1fr; }
+	.tg-values li, .tg-values li + li { padding: 18px 0; border-left: 0; }
+	.tg-values li + li { border-top: 1px solid var(--wp--preset--color--line); }
+	.tg-values li span { display: inline; margin: 0 12px 0 0; }
+	.tg-story-photo { aspect-ratio: 4/3; }
+}

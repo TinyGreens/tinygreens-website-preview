@@ -26,9 +26,9 @@
 			<!-- wp:group {"className":"tg-produce-note","layout":{"type":"default"}} -->
 			<div class="wp-block-group tg-produce-note">
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Fresh produce</p><!-- /wp:paragraph -->
-				<!-- wp:heading {"level":2,"className":"tg-produce-note-title"} --><h2 class="wp-block-heading tg-produce-note-title">Looking for fruit, veg or mushrooms?</h2><!-- /wp:heading -->
+				<!-- wp:heading {"level":2,"className":"tg-produce-note-title"} --><h2 class="wp-block-heading tg-produce-note-title">Looking for fresh fruit and veg?</h2><!-- /wp:heading -->
 				<!-- wp:paragraph -->
-				<p>To see our full fresh produce list, including mushrooms and edible flowers, contact us or fill out the trade form.</p>
+				<p>To see our full fresh produce list, contact us or fill out the trade form.</p>
 				<!-- /wp:paragraph -->
 				<!-- wp:buttons -->
 				<div class="wp-block-buttons">

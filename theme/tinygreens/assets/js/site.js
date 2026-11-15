@@ -32,3 +32,30 @@
 	}, { rootMargin: '0px 0px -8% 0px' });
 	items.forEach(function (el) { io.observe(el); });
 })();
+
+// Our Story: highlight the chapter being read and fill the progress line.
+(function () {
+	var nav = document.querySelector('.tg-story-nav');
+	if (!nav || !('IntersectionObserver' in window)) return;
+	var links = Array.prototype.slice.call(nav.querySelectorAll('a'));
+	var list = nav.querySelector('ol');
+	var setActive = function (id) {
+		links.forEach(function (a, i) {
+			var on = a.getAttribute('href') === '#' + id;
+			a.classList.toggle('is-active', on);
+			if (on) {
+				a.setAttribute('aria-current', 'true');
+				list.style.setProperty('--tg-progress', ((i + 1) / links.length) * 100 + '%');
+			} else {
+				a.removeAttribute('aria-current');
+			}
+		});
+	};
+	var io = new IntersectionObserver(function (entries) {
+		entries.forEach(function (e) { if (e.isIntersecting) setActive(e.target.id); });
+	}, { rootMargin: '-45% 0px -50% 0px' });
+	links.forEach(function (a) {
+		var el = document.getElementById(a.getAttribute('href').slice(1));
+		if (el) io.observe(el);
+	});
+})();
