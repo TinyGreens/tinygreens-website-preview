@@ -25,6 +25,23 @@ if ( class_exists( 'WooCommerce' ) ) {
 	add_filter( 'loop_shop_per_page', function () {
 		return 100;
 	} );
+
+	// No public shop: visitors who reach WooCommerce's Cart, Checkout or My Account
+	// pages (old links, bookmarks) are sent somewhere useful. Product editing in
+	// WordPress is untouched.
+	add_action( 'template_redirect', function () {
+		if ( is_admin() ) {
+			return;
+		}
+		if ( is_cart() || is_checkout() ) {
+			wp_safe_redirect( home_url( '/shop/' ), 301 );
+			exit;
+		}
+		if ( is_account_page() ) {
+			wp_safe_redirect( home_url( '/contact-us/' ), 301 );
+			exit;
+		}
+	} );
 }
 
 /** Products without a photo yet get a soft placeholder, so the grid stays even. */
@@ -46,3 +63,8 @@ add_filter( 'render_block_core/post-featured-image', function ( $html, $block ) 
 		esc_attr( get_the_title() )
 	);
 }, 10, 2 );
+
+/** No shop icons: stop WooCommerce auto-adding its cart and account icons to the header. */
+add_filter( 'hooked_block_types', function ( $hooked ) {
+	return array_values( array_diff( $hooked, array( 'woocommerce/mini-cart', 'woocommerce/customer-account' ) ) );
+}, 20 );

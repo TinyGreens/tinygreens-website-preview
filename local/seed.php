@@ -10,9 +10,58 @@
 require '/wordpress/wp-load.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
 
-foreach ( array( array( 'Wholesale', 'wholesale' ), array( 'Our Story', 'about-us' ), array( 'Contact', 'contact-us' ) ) as $p ) {
+// DRAFT legal text for David to review (see docs/08-terms-privacy-review.md). Not legal advice.
+$tg_p = function ( $t ) {
+	return '<!-- wp:paragraph --><p>' . $t . '</p><!-- /wp:paragraph -->';
+};
+$tg_h = function ( $t ) {
+	return '<!-- wp:heading --><h2 class="wp-block-heading">' . $t . '</h2><!-- /wp:heading -->';
+};
+$tg_contact = 'Call or text <a href="tel:+61458278951">0458 278 951</a>, or email <a href="mailto:david@tinygreens.com.au">david@tinygreens.com.au</a>.';
+
+$tg_terms = implode( "\n", array(
+	$tg_p( '<em>Last updated: November 2026</em>' ),
+	$tg_h( 'About us' ),
+	$tg_p( 'This website is run by Tiny Greens, a microherb grower and fresh produce supplier based in Wynnum, Brisbane, Queensland. ' . $tg_contact ),
+	$tg_h( 'Product information' ),
+	$tg_p( 'This website is a catalogue. We don’t take orders or payments through it. Our range changes with the seasons, so a product shown here may not always be available. Photos show typical produce; what you receive may look slightly different.' ),
+	$tg_h( 'Ordering' ),
+	$tg_p( 'Home customers order by phone or text, and we confirm the order, price and delivery or pick-up details with you directly. Trade customers order through our trade portal under their trade account.' ),
+	$tg_h( 'Your rights' ),
+	$tg_p( 'Nothing in these terms limits any rights you have under the Australian Consumer Law.' ),
+	$tg_h( 'Using this website' ),
+	$tg_p( 'The text and photos on this website belong to Tiny Greens. Please don’t copy them without our permission. We take care to keep this website accurate, but details can change, so please check with us before relying on them.' ),
+	$tg_h( 'Changes' ),
+	$tg_p( 'We may update these terms from time to time. The current version is always on this page. These terms are governed by the laws of Queensland.' ),
+) );
+
+$tg_privacy = implode( "\n", array(
+	$tg_p( '<em>Last updated: November 2026</em>' ),
+	$tg_p( 'This policy explains what personal information Tiny Greens collects and how we use it.' ),
+	$tg_h( 'What we collect' ),
+	$tg_p( 'When you call, text or email us, or send our trade enquiry form, we collect the details you give us: for example your name, business or venue name, email, phone number, suburb and what you’re interested in. We don’t collect payment details through this website.' ),
+	$tg_h( 'How we use it' ),
+	$tg_p( 'We use your details to reply to you, set up and manage trade accounts, and arrange orders and deliveries. We won’t add you to a mailing list without asking, and we don’t sell or rent your information.' ),
+	$tg_h( 'Where it’s kept' ),
+	$tg_p( 'Trade enquiries are emailed to us and stored in our website’s private admin area. Our website host and email provider store this information on our behalf. Trade customers’ order details are kept in our trade ordering system.' ),
+	$tg_h( 'Cookies' ),
+	$tg_p( 'This website doesn’t use advertising or tracking cookies.' ),
+	$tg_h( 'Access and corrections' ),
+	$tg_p( 'You can ask to see, correct or delete the information we hold about you. ' . $tg_contact ),
+	$tg_h( 'Changes' ),
+	$tg_p( 'We may update this policy from time to time. The current version is always on this page.' ),
+) );
+
+$tg_pages = array(
+	array( 'Wholesale', 'wholesale', '' ),
+	array( 'Our Story', 'about-us', '' ),
+	array( 'Contact', 'contact-us', '' ),
+	array( 'Terms', 'terms', $tg_terms ),
+	array( 'Privacy', 'privacy', $tg_privacy ),
+);
+foreach ( $tg_pages as $p ) {
 	if ( ! get_page_by_path( $p[1] ) ) {
-		wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $p[0], 'post_name' => $p[1] ) );
+		wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $p[0], 'post_name' => $p[1], 'post_content' => $p[2] ) );
 	}
 }
 

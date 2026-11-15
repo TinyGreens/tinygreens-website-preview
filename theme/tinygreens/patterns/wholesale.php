@@ -113,7 +113,7 @@ foreach ( $cats as $c ) :
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph -->
-		<p>Approved venues get trade pricing, online ordering and a real person on the other end of the phone.</p>
+		<p>Approved venues get trade pricing, online ordering and a direct line to us.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -123,9 +123,9 @@ foreach ( $cats as $c ) :
 <?php
 $steps = array(
 	array( '01', 'Apply', 'Tell us about your venue and what you use. The form below takes two minutes.' ),
-	array( '02', 'Get your price list', 'We set up your account and send you your trade price list.' ),
-	array( '03', 'Order online', 'Order and reorder your regulars online, any time, from your own price list.' ),
-	array( '04', 'Delivered', 'Delivered to your door on the days that suit your venue.' ),
+	array( '02', 'Get your price list', 'We’ll talk through what you need and set up your trade account.' ),
+	array( '03', 'Order online', 'Order your regulars online through our trade portal.' ),
+	array( '04', 'Delivered', 'Delivery days arranged around your venue.' ),
 );
 foreach ( $steps as $s ) :
 	?>

@@ -439,3 +439,7 @@ h1 em, h2 em {
 	.tg-more-cards { grid-template-columns: repeat(2, 1fr) !important; gap: 26px 14px !important; }
 	.tg-more-cards .wp-block-post-title { font-size: 19px; }
 }
+
+/* Plain text pages (Terms, Privacy): calmer headings */
+.wp-block-post-content > h2.wp-block-heading { font-size: clamp(24px, 2.2vw, 30px); margin-top: 40px; margin-bottom: 8px; }
+.wp-block-post-content > p em { font-style: normal; color: var(--wp--preset--color--ink-soft); }

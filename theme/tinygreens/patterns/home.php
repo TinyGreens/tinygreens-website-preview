@@ -187,7 +187,7 @@ foreach ( $cards as $c ) :
 		</div>
 		<!-- /wp:group -->
 		<!-- wp:paragraph -->
-		<p>If you run a café, restaurant or catering business, get in touch for wholesale pricing. Approved venues get trade pricing, online ordering and a real person on the other end of the phone.</p>
+		<p>If you run a café, restaurant or catering business, get in touch for wholesale pricing. Approved venues get trade pricing, online ordering and a direct line to us.</p>
 		<!-- /wp:paragraph -->
 	</div>
 	<!-- /wp:group -->
@@ -197,9 +197,9 @@ foreach ( $cards as $c ) :
 <?php
 $steps = array(
 	array( '01', 'Apply', 'Tell us about your venue and what you use. It takes two minutes.' ),
-	array( '02', 'Get your price list', 'We set up your account and send you your trade price list.' ),
-	array( '03', 'Order online', 'Order and reorder your regulars online, any time, from your own price list.' ),
-	array( '04', 'Delivered', 'Delivered to your door on the days that suit your venue.' ),
+	array( '02', 'Get your price list', 'We’ll talk through what you need and set up your trade account.' ),
+	array( '03', 'Order online', 'Order your regulars online through our trade portal.' ),
+	array( '04', 'Delivered', 'Delivery days arranged around your venue.' ),
 );
 foreach ( $steps as $s ) :
 	?>
@@ -270,7 +270,7 @@ foreach ( $steps as $s ) :
 	<!-- wp:paragraph {"className":"tg-eyebrow"} --><p class="tg-eyebrow">Our story</p><!-- /wp:paragraph -->
 	<!-- wp:heading --><h2 class="wp-block-heading">One rack, one shelf, <em>one light.</em></h2><!-- /wp:heading -->
 	<!-- wp:paragraph {"className":"tg-quote"} -->
-	<p class="tg-quote">“When I moved to Brisbane I kept noticing that chefs wanted fresher, better microherbs. So I started growing them in our garage.”</p>
+	<p class="tg-quote">“What started in our garage with a single growing rack, one shelf and one light quickly became something much bigger.”</p>
 	<!-- /wp:paragraph -->
 	<!-- wp:paragraph -->
 	<p>Tiny Greens began supplying one or two local kitchens. Word of mouth, consistency and good relationships did the rest. As we got to know what our customers needed, adding fresh fruit and vegetables was the natural next step, so chefs can get more of their produce from someone they already trust.</p>
