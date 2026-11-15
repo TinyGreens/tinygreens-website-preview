@@ -355,3 +355,54 @@ h1 em, h2 em {
 	.tg-values li span { display: inline; margin: 0 12px 0 0; }
 	.tg-story-photo { aspect-ratio: 4/3; }
 }
+
+/* =========================================================
+   Contact page
+   ========================================================= */
+.tg-contact-hero { padding-bottom: clamp(48px, 6vw, 88px) !important; }
+.tg-contact-grid { gap: clamp(32px, 6vw, 96px) !important; align-items: flex-end !important; }
+.tg-contact-copy .tg-lead { max-width: 30em; }
+.tg-contact-base { margin-top: 32px !important; font: 400 22px/1.2 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); }
+.tg-contact-base span { display: block; margin-bottom: 8px; font: 600 13px/1 var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--wp--preset--color--leaf-text); }
+.tg-contact-list { list-style: none; padding: 0; margin: 0; border-top: 1px solid var(--wp--preset--color--line); }
+.tg-contact-list li { margin: 0; border-bottom: 1px solid var(--wp--preset--color--line); }
+.tg-contact-list a { display: grid; grid-template-columns: 84px 1fr auto; align-items: baseline; gap: 16px; padding: 26px 4px; min-height: 44px; text-decoration: none; color: var(--wp--preset--color--ink); }
+.tg-contact-label { font: 600 13px/1 var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--wp--preset--color--leaf-text); }
+.tg-contact-value { font: 400 clamp(24px, 2.6vw, 36px)/1.15 var(--wp--preset--font-family--serif); overflow-wrap: anywhere; }
+.tg-contact-arrow { font-size: 20px; color: var(--wp--preset--color--beet); transition: transform 400ms var(--tg-ease); }
+.tg-contact-list a:hover .tg-contact-arrow, .tg-contact-list a:focus-visible .tg-contact-arrow { transform: translateX(6px); }
+.tg-contact-list a:hover .tg-contact-value { color: var(--wp--preset--color--forest); }
+
+.tg-contact-routes { background: var(--wp--preset--color--white); border-top: 1px solid var(--wp--preset--color--line); }
+.tg-routes { gap: 20px !important; }
+.tg-route { display: flex; flex-direction: column; padding: clamp(26px, 3vw, 38px); border-radius: var(--tg-radius); border: 1px solid var(--wp--preset--color--line); background: var(--wp--preset--color--paper); }
+.tg-route .tg-tag { font: 600 12px/1 var(--wp--preset--font-family--sans); letter-spacing: .16em; text-transform: uppercase; color: var(--wp--preset--color--leaf-text); margin: 0; }
+.tg-route h3 { margin: 16px 0 12px !important; }
+.tg-route h3 + p { margin-top: 0 !important; }
+.tg-route p { color: var(--wp--preset--color--ink-soft); }
+.tg-route .tg-route-link { margin-top: auto !important; padding-top: 18px; }
+.tg-route-link a { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-weight: 600; color: var(--wp--preset--color--forest); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 calc(100% - 8px) / 0 1px no-repeat; transition: background-size 400ms var(--tg-ease); }
+.tg-route-link a::after { content: "→"; }
+.tg-route-link a:hover, .tg-route-link a:focus-visible { background-size: 100% 1px; }
+.tg-route--trade { background: var(--wp--preset--color--forest); border-color: var(--wp--preset--color--forest); }
+.tg-route--trade .tg-tag { color: #A9C08A; }
+.tg-route--trade h3 { color: var(--wp--preset--color--white); }
+.tg-route--trade p { color: #C8CDBF; }
+.tg-route--trade .tg-route-link a { color: var(--wp--preset--color--white); }
+
+@media (prefers-reduced-motion: no-preference) {
+	.tg-js .tg-contact-hero .tg-eyebrow { animation: tg-rise 700ms var(--tg-ease) 80ms both; }
+	.tg-js .tg-contact-hero .tg-page-title .tg-line > span { animation: tg-line 900ms var(--tg-ease) 140ms both; }
+	.tg-js .tg-contact-hero .tg-page-title .tg-line + .tg-line > span { animation-delay: 300ms; }
+	.tg-js .tg-contact-hero .tg-page-title .tg-line + .tg-line + .tg-line > span { animation-delay: 460ms; }
+	.tg-js .tg-contact-hero .tg-page-title em { animation: tg-underline 700ms var(--tg-ease) 1000ms both; }
+	.tg-js .tg-contact-hero .tg-lead, .tg-js .tg-contact-base { animation: tg-rise 700ms var(--tg-ease) 420ms both; }
+}
+
+@media (max-width: 781px) {
+	.tg-contact-grid { flex-direction: column; align-items: stretch !important; }
+	.tg-contact-list a { grid-template-columns: 1fr auto; gap: 8px 16px; padding: 20px 2px; }
+	.tg-contact-label { grid-column: 1 / -1; }
+	.tg-contact-value { font-size: 24px; }
+	.tg-routes { flex-direction: column; }
+}

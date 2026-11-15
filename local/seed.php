@@ -10,7 +10,7 @@
 require '/wordpress/wp-load.php';
 require_once ABSPATH . 'wp-admin/includes/image.php';
 
-foreach ( array( array( 'Wholesale', 'wholesale' ), array( 'Our Story', 'about-us' ) ) as $p ) {
+foreach ( array( array( 'Wholesale', 'wholesale' ), array( 'Our Story', 'about-us' ), array( 'Contact', 'contact-us' ) ) as $p ) {
 	if ( ! get_page_by_path( $p[1] ) ) {
 		wp_insert_post( array( 'post_type' => 'page', 'post_status' => 'publish', 'post_title' => $p[0], 'post_name' => $p[1] ) );
 	}
