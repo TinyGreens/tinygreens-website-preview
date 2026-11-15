@@ -1,4 +1,5 @@
-// Header border on scroll + gentle fade-in of sections.
+// Header border on scroll + staggered, once-only section reveals.
+// The <head> adds the "tg-js" class; without JavaScript everything is simply visible.
 (function () {
 	var header = document.querySelector('.tg-header');
 	if (header) {
@@ -6,12 +7,18 @@
 		window.addEventListener('scroll', onScroll, { passive: true });
 		onScroll();
 	}
-	var items = document.querySelectorAll('.tg-reveal');
-	if (!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+	var items = Array.prototype.slice.call(document.querySelectorAll('.tg-reveal'));
+	var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+	if (!('IntersectionObserver' in window) || reduce) {
 		items.forEach(function (el) { el.classList.add('is-in'); });
 		return;
 	}
-	document.documentElement.classList.add('tg-js');
+	// Stagger siblings (cards, steps) by 80ms each, capped so nothing waits long.
+	items.forEach(function (el) {
+		var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.classList.contains('tg-reveal'); });
+		var i = sibs.indexOf(el);
+		if (i > 0) { el.style.setProperty('--tg-delay', Math.min(i, 4) * 80 + 'ms'); }
+	});
 	var io = new IntersectionObserver(function (entries) {
 		entries.forEach(function (e) {
 			if (e.isIntersecting) { e.target.classList.add('is-in'); io.unobserve(e.target); }

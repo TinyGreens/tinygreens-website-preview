@@ -10,7 +10,7 @@ if ( ! defined( 'ABSPATH' ) ) {
 add_action( 'after_setup_theme', function () {
 	add_theme_support( 'wp-block-styles' );
 	add_theme_support( 'editor-styles' );
-	add_editor_style( 'style.css' );
+	add_editor_style( array( 'style.css', 'assets/css/system.css' ) );
 } );
 
 add_action( 'wp_enqueue_scripts', function () {
@@ -21,8 +21,13 @@ add_action( 'wp_enqueue_scripts', function () {
 		array(),
 		null
 	);
-	wp_enqueue_style( 'tinygreens', get_stylesheet_uri(), array( 'tinygreens-fonts' ), $ver );
-	wp_enqueue_script( 'tinygreens', get_theme_file_uri( 'assets/js/site.js' ), array(), $ver, array( 'strategy' => 'defer', 'in_footer' => true ) );
+	$mtime = function ( $file ) use ( $ver ) {
+		$path = get_theme_file_path( $file );
+		return file_exists( $path ) ? $ver . '.' . filemtime( $path ) : $ver;
+	};
+	wp_enqueue_style( 'tinygreens', get_stylesheet_uri(), array( 'tinygreens-fonts' ), $mtime( 'style.css' ) );
+	wp_enqueue_style( 'tinygreens-system', get_theme_file_uri( 'assets/css/system.css' ), array( 'tinygreens' ), $mtime( 'assets/css/system.css' ) );
+	wp_enqueue_script( 'tinygreens', get_theme_file_uri( 'assets/js/site.js' ), array(), $mtime( 'assets/js/site.js' ), array( 'strategy' => 'defer', 'in_footer' => true ) );
 } );
 
 add_action( 'enqueue_block_editor_assets', function () {
@@ -33,6 +38,11 @@ add_action( 'enqueue_block_editor_assets', function () {
 		null
 	);
 } );
+
+/** Mark the page as JavaScript-capable before it paints, so entrance animations don't flash. */
+add_action( 'wp_head', function () {
+	echo "<script>document.documentElement.classList.add('tg-js')</script>\n";
+}, 0 );
 
 add_action( 'wp_head', function () {
 	echo '<link rel="preconnect" href="https://fonts.googleapis.com"><link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>' . "\n";

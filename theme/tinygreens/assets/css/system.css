@@ -1,0 +1,165 @@
+/* =========================================================
+   Tiny Greens design system v2 (Stage 3)
+   See docs/05-design-audit-and-direction.md.
+   Loaded after style.css; the two get merged in the Stage 6 polish.
+   ========================================================= */
+:root {
+	--tg-ease: cubic-bezier(.22, 1, .36, 1);
+	--tg-fast: 180ms;
+	--tg-radius: 16px;
+}
+
+/* ---------- Readable labels and minimum sizes ---------- */
+.tg-eyebrow { font-size: 13px !important; letter-spacing: .12em; color: var(--wp--preset--color--leaf-text); }
+.tg-side .tg-tag, .tg-cat .tg-tag, .tg-way .tg-tag, .tg-card-cat { font-size: 13px; letter-spacing: .12em; }
+.tg-cat:not(:first-child) .tg-tag, .tg-way:not(.tg-way--trade) .tg-tag, .tg-card-cat { color: var(--wp--preset--color--leaf-text); }
+.tg-small-print, .tg-note, .tg-step p, .tg-card .tg-notes, .tg-cat p:last-child { font-size: 16px; }
+.tg-card .tg-meta, .tg-more p, .tg-form-actions p { font-size: 15px; }
+.tg-footer { font-size: 16px; }
+.tg-legal { font-size: 14px; }
+
+/* ---------- Commercial actions in forest; pink kept for editorial emphasis ---------- */
+.tg-card .tg-meta strong, .tg-enquire { color: var(--wp--preset--color--forest); }
+.tg-note { background: var(--wp--preset--color--paper-2); border-left-color: var(--wp--preset--color--forest); }
+
+/* ---------- Buttons and links: quick, tactile feedback ---------- */
+.wp-block-button__link { transition: background-color var(--tg-fast) var(--tg-ease), color var(--tg-fast) var(--tg-ease), border-color var(--tg-fast) var(--tg-ease), transform 120ms var(--tg-ease); min-height: 48px; box-sizing: border-box; display: inline-flex; align-items: center; justify-content: center; }
+.wp-block-button__link:active { transform: scale(.98); }
+a:focus-visible, button:focus-visible, input:focus-visible, select:focus-visible, textarea:focus-visible { outline: 2px solid var(--wp--preset--color--forest); outline-offset: 3px; }
+.tg-trade a:focus-visible, .tg-way--trade a:focus-visible, .tg-footer a:focus-visible, .tg-cat:first-child a:focus-visible { outline-color: var(--wp--preset--color--paper); }
+.tg-text-link a, a.tg-text-link { transition: opacity var(--tg-fast) var(--tg-ease); }
+.tg-text-link a:hover, a.tg-text-link:hover { opacity: .7; }
+.tg-trade .wp-block-button.is-style-outline > .wp-block-button__link { background: transparent; color: var(--wp--preset--color--paper); border-color: rgba(245, 241, 232, .5); }
+.tg-trade .wp-block-button.is-style-outline > .wp-block-button__link:hover { background: var(--wp--preset--color--paper); color: var(--wp--preset--color--forest); }
+.tg-trade-cta .wp-block-buttons { gap: 10px; }
+
+/* ---------- Heading emphasis: the italic word gets a fine underline ---------- */
+h1 em, h2 em {
+	background-image: linear-gradient(rgba(163, 32, 78, .45), rgba(163, 32, 78, .45));
+	background-repeat: no-repeat;
+	background-position: 0 92%;
+	background-size: 100% .045em;
+}
+.tg-trade h2 em { background-image: linear-gradient(rgba(231, 163, 188, .55), rgba(231, 163, 188, .55)); }
+
+/* ---------- Header: trade login always reachable ---------- */
+.tg-header-actions { gap: 22px; align-items: center; }
+.tg-trade-login { margin: 0; font-size: 15px; font-weight: 600; white-space: nowrap; }
+.tg-trade-login a { text-decoration: none; color: var(--wp--preset--color--forest); border-bottom: 1px solid currentColor; padding-bottom: 2px; }
+
+/* ---------- Hero ---------- */
+.tg-hero { padding-bottom: 0 !important; }
+.tg-hero-title { margin: 22px 0 26px !important; font-size: clamp(42px, 5.1vw, 76px) !important; }
+.tg-hero-title .tg-line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.tg-hero-title .tg-line > span { display: block; }
+.wp-block-buttons.tg-actions { gap: 10px; }
+.tg-hero-media { position: relative; padding-bottom: 40px; }
+.tg-hero-img { aspect-ratio: 4/5; }
+.tg-hero-img img { object-position: 50% 50%; }
+.tg-hero-img figcaption { left: auto; right: 16px; }
+.tg-hero-inset { position: absolute; left: -48px; bottom: 0; width: 40%; margin: 0 !important; aspect-ratio: 1; border-radius: 14px; overflow: hidden; border: 6px solid var(--wp--preset--color--paper); }
+.tg-hero-inset img { width: 100%; height: 100% !important; object-fit: cover; display: block; }
+
+/* ---------- Choose your path ---------- */
+.tg-paths { display: grid !important; grid-template-columns: repeat(4, 1fr); margin-top: clamp(48px, 6vw, 80px) !important; margin-bottom: clamp(64px, 8vw, 112px) !important; border-top: 1px solid var(--wp--preset--color--line); border-bottom: 1px solid var(--wp--preset--color--line); }
+.tg-path { margin: 0 !important; }
+.tg-path + .tg-path { border-left: 1px solid var(--wp--preset--color--line); }
+.tg-path a { display: grid; grid-template-columns: 1fr auto; gap: 10px 12px; padding: 26px 24px; height: 100%; box-sizing: border-box; text-decoration: none; transition: background-color var(--tg-fast) var(--tg-ease); }
+.tg-path a:hover { background: var(--wp--preset--color--paper-2); }
+.tg-path-label { grid-column: 1 / -1; font: 600 13px/1 var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--wp--preset--color--leaf-text); }
+.tg-path-action { font: 400 clamp(20px, 1.7vw, 24px)/1.2 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); }
+.tg-arrow { align-self: end; color: var(--wp--preset--color--forest); font-size: 20px; line-height: 1.2; transition: transform var(--tg-fast) var(--tg-ease); }
+.tg-path a:hover .tg-arrow { transform: translateX(4px); }
+
+/* ---------- Cards: square photos ---------- */
+.tg-card .wp-block-image, .tg-card .wp-block-post-featured-image { aspect-ratio: 1; }
+.tg-card h3 { font-size: 23px; }
+
+/* =========================================================
+   Motion
+   The <head> marks the page with "tg-js" before it paints.
+   Without JavaScript, or with "reduce motion" on, nothing moves
+   and everything is visible.
+   ========================================================= */
+.tg-js .tg-reveal { transform: translateY(16px); transition: opacity 700ms var(--tg-ease), transform 700ms var(--tg-ease); transition-delay: var(--tg-delay, 0ms); }
+/* Safety net: if the reveal script never runs, show everything after 3s */
+.tg-js .tg-reveal:not(.is-in) { animation: tg-show 1ms linear 3s forwards; }
+@keyframes tg-show { to { opacity: 1; transform: none; } }
+.tg-js .tg-reveal h2 em { background-size: 0 .045em; transition: background-size 700ms var(--tg-ease) 450ms; }
+.tg-js .tg-reveal.is-in h2 em { background-size: 100% .045em; }
+
+@keyframes tg-fade { from { opacity: 0; } }
+@keyframes tg-rise { from { opacity: 0; transform: translateY(14px); } }
+@keyframes tg-line { from { transform: translateY(105%); } }
+@keyframes tg-clip { from { clip-path: inset(6% 6% 6% 6% round 16px); } to { clip-path: inset(0 0 0 0 round 16px); } }
+@keyframes tg-settle { from { transform: scale(1.07); } }
+@keyframes tg-underline { from { background-size: 0 .045em; } }
+@keyframes tg-drift { from { transform: translateY(-28px) scale(1.1); } to { transform: translateY(28px) scale(1.1); } }
+
+@media (prefers-reduced-motion: no-preference) {
+	/* Homepage entrance: about 1.1s in total. Buttons are usable immediately. */
+	.tg-js .tg-header { animation: tg-fade 600ms var(--tg-ease) both; }
+	.tg-js .tg-hero .tg-eyebrow { animation: tg-rise 700ms var(--tg-ease) 80ms both; }
+	.tg-js .tg-hero-title .tg-line > span { animation: tg-line 900ms var(--tg-ease) 140ms both; }
+	.tg-js .tg-hero-title .tg-line + .tg-line > span { animation-delay: 260ms; }
+	.tg-js .tg-hero-title em { animation: tg-underline 700ms var(--tg-ease) 950ms both; }
+	.tg-js .tg-hero .tg-lead { animation: tg-rise 700ms var(--tg-ease) 360ms both; }
+	.tg-js .tg-hero-img { animation: tg-clip 1100ms var(--tg-ease) both; }
+	.tg-js .tg-hero-img img { animation: tg-settle 1400ms var(--tg-ease) both; }
+	.tg-js .tg-hero-inset { animation: tg-rise 900ms var(--tg-ease) 550ms both; }
+	.tg-js .tg-hero .tg-joined { animation: tg-fade 700ms var(--tg-ease) 500ms both; }
+
+	/* Gentle photo drift linked to scrolling: larger screens, supporting browsers, no JavaScript */
+	@supports (animation-timeline: view()) {
+		@media (min-width: 782px) {
+			.tg-side .wp-block-cover__image-background,
+			.tg-home-cook .wp-block-image img { animation: tg-drift linear both; animation-timeline: view(); animation-range: cover; }
+		}
+	}
+}
+@media (prefers-reduced-motion: reduce) {
+	.tg-js .tg-reveal { opacity: 1; transform: none; transition: none; animation: none; }
+	.tg-js .tg-reveal h2 em { background-size: 100% .045em; transition: none; }
+	.tg-side:hover .wp-block-cover__image-background, .tg-card:hover img { transform: none; }
+}
+
+/* ---------- Responsive ---------- */
+@media (max-width: 980px) {
+	.tg-hero-grid .tg-hero-media { order: 0; }
+	.tg-paths { grid-template-columns: 1fr 1fr; }
+	.tg-path:nth-child(3) { border-left: 0; }
+	.tg-path:nth-child(n+3) { border-top: 1px solid var(--wp--preset--color--line); }
+}
+@media (max-width: 781px) {
+	.tg-hero-img { aspect-ratio: 5/4; }
+	.tg-hero-media { padding-bottom: 28px; }
+	.tg-hero-inset { left: auto; right: 14px; width: 34%; border-width: 4px; }
+	.tg-hero-img figcaption { right: auto; left: 12px; bottom: 12px; }
+}
+@media (max-width: 600px) {
+	.tg-header .tg-nav { gap: 16px; }
+	.tg-header .wp-block-navigation { order: 3; }
+	.tg-header-actions { margin-left: auto; }
+	.tg-paths { grid-template-columns: 1fr; }
+	.tg-path + .tg-path { border-left: 0; border-top: 1px solid var(--wp--preset--color--line); }
+	.tg-path a { padding: 18px 0; }
+	.tg-path a:hover { background: transparent; }
+	.tg-joined { font-size: 16px; }
+}
+
+/* Phones: shorter page, same content */
+@media (max-width: 600px) {
+	.tg-side { min-height: 360px !important; }
+	.tg-sides { gap: 14px !important; }
+	.tg-steps { grid-template-columns: 1fr 1fr !important; gap: 0 18px !important; }
+	.tg-step, .tg-step + .tg-step { padding: 20px 0 6px !important; border-left: 0 !important; border-top: 1px solid rgba(255, 255, 255, .18); }
+	.tg-step .tg-n { font-size: 34px; }
+	.tg-step h3 { font-size: 20px; margin: 12px 0 6px; }
+	.tg-step p { font-size: 15px; }
+	.tg-trade-cta { margin-top: 36px !important; }
+	.tg-home-cook .wp-block-image { aspect-ratio: 16/10; }
+	.tg-section { padding-top: 64px !important; padding-bottom: 64px !important; }
+}
+@media (max-width: 600px) {
+	.tg-side .wp-block-cover__background.tg-shade { background: linear-gradient(180deg, rgba(18, 30, 22, .15) 0%, rgba(18, 30, 22, .88) 55%) !important; }
+}
