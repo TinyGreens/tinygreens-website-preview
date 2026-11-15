@@ -59,25 +59,34 @@ foreach ( $tg_drafts as $name => $d ) {
 	$p->save();
 }
 
-// TEMPORARY licensed stock photos (see docs/11-temporary-photos.md). Only added where a product
-// has no photo yet. The caption becomes the "Illustrative photo" note on the product page.
-$tg_temp_photos = array(
-	'Red Cabbage' => array( 'red-cabbage-microgreens-usda.jpg', 'Red cabbage microgreens with purple-veined seed leaves (illustrative photo)', 'Illustrative photo · Peggy Greb, USDA Agricultural Research Service (public domain)' ),
-	'Pea Shoots'  => array( 'pea-shoots-cc0.jpg', 'Fresh pea shoots with tender leaves and stems (illustrative photo)', 'Illustrative photo · Fumikas Sagisavas, Wikimedia Commons (CC0)' ),
+// David's own product photos (from the current website, confirmed his 15 Nov 2026).
+// Set where a product has no photo, or only a temporary stock one. A photo David uploads
+// in WordPress himself is never replaced. No caption, so no "Illustrative photo" note.
+$tg_own_photos = array(
+	'Pea Shoots'    => array( 'pea-shoots.jpg', 'A tray of Tiny Greens pea shoots' ),
+	'Purple Radish' => array( 'purple-radish.jpg', 'Purple radish microgreens' ),
+	'Green Cabbage' => array( 'green-cabbage.jpg', 'Green cabbage microgreens' ),
+	'Red Cabbage'   => array( 'red-cabbage.jpg', 'Red cabbage microgreens with purple stems' ),
 );
 require_once ABSPATH . 'wp-admin/includes/image.php';
-foreach ( $tg_temp_photos as $name => $ph ) {
+foreach ( $tg_own_photos as $name => $ph ) {
 	$found = get_posts( array( 'post_type' => 'product', 'title' => $name, 'numberposts' => 1, 'fields' => 'ids', 'post_status' => 'any' ) );
-	if ( ! $found || has_post_thumbnail( $found[0] ) ) {
+	if ( ! $found ) {
 		continue;
 	}
-	$src    = get_theme_file_path( 'assets/images/temporary/' . $ph[0] );
-	$upload = wp_upload_bits( $ph[0], null, file_get_contents( $src ) );
+	$current = get_post_thumbnail_id( $found[0] );
+	if ( $current && false === strpos( get_the_title( $current ), '(temporary)' ) ) {
+		continue; // already has a real photo
+	}
+	$upload = wp_upload_bits( $ph[0], null, file_get_contents( get_theme_file_path( 'assets/images/products/' . $ph[0] ) ) );
 	if ( ! empty( $upload['error'] ) ) {
 		continue;
 	}
-	$att = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => $name . ' (temporary)', 'post_excerpt' => $ph[2], 'post_status' => 'inherit' ), $upload['file'], $found[0] );
+	$att = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => $name, 'post_status' => 'inherit' ), $upload['file'], $found[0] );
 	wp_update_attachment_metadata( $att, wp_generate_attachment_metadata( $att, $upload['file'] ) );
 	update_post_meta( $att, '_wp_attachment_image_alt', $ph[1] );
 	set_post_thumbnail( $found[0], $att );
+	if ( $current ) {
+		wp_delete_attachment( $current, true ); // remove the replaced temporary stock photo
+	}
 }
