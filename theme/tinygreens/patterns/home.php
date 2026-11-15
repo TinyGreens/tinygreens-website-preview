@@ -22,7 +22,7 @@ $img = function ( $file ) {
 			<h1 class="wp-block-heading tg-hero-title"><span class="tg-line"><span>Microherbs we grow.</span></span> <span class="tg-line"><span><em>Produce</em> we supply.</span></span></h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"tg-lead"} -->
-			<p class="tg-lead">Brisbane microgreens and microherbs grown by us, plus fresh fruit, vegetables, mushrooms and edible flowers for cafés and restaurants. One local supplier, one delivery.</p>
+			<p class="tg-lead">Brisbane microgreens and microherbs grown by us to order, plus fresh fruit, vegetables, mushrooms and edible flowers for cafés and restaurants. One local supplier, one delivery.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons {"className":"tg-actions"} -->
 			<div class="wp-block-buttons tg-actions">
@@ -96,7 +96,7 @@ foreach ( $paths as $p ) :
 			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="Red amaranth microgreens growing under lights in the Tiny Greens grow room" src="<?php echo $img( 'grow-room-amaranth.jpg' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Grown by us</p><!-- /wp:paragraph -->
 				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Microherbs</h3><!-- /wp:heading -->
-				<!-- wp:paragraph --><p>Grown by us in Brisbane, for garnish, colour and flavour.</p><!-- /wp:paragraph -->
+				<!-- wp:paragraph --><p>Grown to order in Brisbane and cut within 12 hours of delivery, for garnish, colour and flavour.</p><!-- /wp:paragraph -->
 				<!-- wp:paragraph {"className":"tg-text-link"} --><p class="tg-text-link"><a href="/shop/">See the range →</a></p><!-- /wp:paragraph -->
 			</div></div>
 			<!-- /wp:cover -->

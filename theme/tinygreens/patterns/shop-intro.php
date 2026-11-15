@@ -17,7 +17,7 @@
 			<h1 class="wp-block-heading tg-page-title"><span class="tg-line"><span>Our microgreens</span></span> <span class="tg-line"><span><em>grow list</em>.</span></span></h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"tg-lead"} -->
-			<p class="tg-lead">Below are all of our microherb options, plus live trays, grown by us in Brisbane. To order for home, call or text us.</p>
+			<p class="tg-lead">Below are all of our microherb options, plus live trays. Our cut microherbs are grown to order in Brisbane and cut within 12 hours of delivery. To order for home, call or text us.</p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
