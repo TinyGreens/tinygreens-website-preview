@@ -66,7 +66,7 @@ add_shortcode( 'tinygreens_product_panel', function () {
 	</div>
 	<div class="tg-pp-order tg-pp-order--trade">
 		<p class="tg-pp-order-label">For cafés &amp; restaurants</p>
-		<p>Trade customers order online any time, with trade pricing. New venue? <a href="/wholesale/#apply">Apply for a trade account</a>.</p>
+		<p>Trade customers order online with trade pricing. New venue? <a href="/wholesale/#apply">Apply for a trade account</a>.</p>
 		<p class="tg-route-link"><a href="https://wholesale.tinygreens.com.au/">Order on the trade portal</a></p>
 	</div>
 	<?php

@@ -198,7 +198,7 @@ foreach ( $cards as $c ) :
 $steps = array(
 	array( '01', 'Apply', 'Tell us about your venue and what you use. It takes two minutes.' ),
 	array( '02', 'Get your price list', 'We’ll talk through what you need and set up your trade account.' ),
-	array( '03', 'Order online', 'Order your regulars online through our trade portal, any time.' ),
+	array( '03', 'Order online', 'Order your regulars online through our trade portal.' ),
 	array( '04', 'Delivered', 'Delivery days arranged around your venue.' ),
 );
 foreach ( $steps as $s ) :
