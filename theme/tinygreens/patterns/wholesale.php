@@ -22,7 +22,7 @@ $img = function ( $file ) {
 			<h1 class="wp-block-heading">Wholesale produce for Brisbane <em>kitchens</em>.</h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"tg-lead"} -->
-			<p class="tg-lead">Microherbs we grow to order and cut within 12 hours of delivery, plus fresh fruit and vegetables, specialty mushrooms and edible flowers, all on one delivery. If you run a café, restaurant or catering business, get in touch for wholesale pricing.</p>
+			<p class="tg-lead">Microherbs we grow to order and cut within 12 hours of delivery, plus fresh fruit, veg and edible flowers, all on one delivery. If you run a café, restaurant or catering business, get in touch for wholesale pricing.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons {"className":"tg-actions"} -->
 			<div class="wp-block-buttons tg-actions">

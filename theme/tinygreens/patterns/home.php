@@ -22,7 +22,7 @@ $img = function ( $file ) {
 			<h1 class="wp-block-heading tg-hero-title"><span class="tg-line"><span>Microherbs we grow.</span></span> <span class="tg-line"><span><em>Produce</em> we supply.</span></span></h1>
 			<!-- /wp:heading -->
 			<!-- wp:paragraph {"className":"tg-lead"} -->
-			<p class="tg-lead">Brisbane microgreens and microherbs grown by us to order, plus fresh fruit, vegetables, mushrooms and edible flowers for cafés and restaurants. One local supplier, one delivery.</p>
+			<p class="tg-lead">Brisbane microgreens and microherbs grown by us to order, plus fresh fruit, veg and edible flowers for cafés and restaurants. One local supplier, one delivery.</p>
 			<!-- /wp:paragraph -->
 			<!-- wp:buttons {"className":"tg-actions"} -->
 			<div class="wp-block-buttons tg-actions">
@@ -104,8 +104,8 @@ foreach ( $paths as $p ) :
 			<!-- wp:cover {"url":"<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>","dimRatio":0,"minHeight":560,"contentPosition":"bottom left","className":"tg-side tg-reveal"} -->
 			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="A wooden crate of capsicums, chillies, avocados and spring onions" <?php echo tg_img( 'produce-crate-PLACEHOLDER-unsplash.jpg', '(max-width: 781px) 100vw, 50vw' ); ?> loading="lazy" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Sourced by us</p><!-- /wp:paragraph -->
-				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Fruit, veg &amp; mushrooms</h3><!-- /wp:heading -->
-				<!-- wp:paragraph --><p>Fresh fruit and vegetables, specialty mushrooms, edible flowers and fresh herbs, on the same delivery as your micros.</p><!-- /wp:paragraph -->
+				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Fruit &amp; veg</h3><!-- /wp:heading -->
+				<!-- wp:paragraph --><p>Fresh fruit and veg, plus edible flowers and fresh herbs, on the same delivery as your micros.</p><!-- /wp:paragraph -->
 				<!-- wp:paragraph {"className":"tg-text-link"} --><p class="tg-text-link"><a href="/wholesale/">Wholesale supply →</a></p><!-- /wp:paragraph -->
 			</div></div>
 			<!-- /wp:cover -->

@@ -26,8 +26,8 @@ function tg_seo_plugin_active() {
 /** Descriptions by page address (about 150 characters each; no health or unconfirmed claims). */
 function tg_seo_page_descriptions() {
 	return array(
-		''           => 'Microgreens in Brisbane, grown to order by Tiny Greens in Wynnum, plus fresh fruit, veg, mushrooms and edible flowers for cafés and restaurants.',
-		'wholesale'  => 'Wholesale microherbs, fresh fruit, vegetables, mushrooms and edible flowers for Brisbane cafés and restaurants. Apply for a trade account.',
+		''           => 'Microgreens in Brisbane, grown to order by Tiny Greens in Wynnum, plus fresh fruit, veg and edible flowers for cafés and restaurants.',
+		'wholesale'  => 'Wholesale microherbs, fresh fruit, veg and edible flowers for Brisbane cafés and restaurants. Apply for a trade account.',
 		'shop'       => 'Our microgreens grow list: microherbs and live trays grown to order in Brisbane and cut within 12 hours of delivery. Call or text to order.',
 		'about-us'   => 'How Tiny Greens grew from one rack, one shelf and one light in a Brisbane garage into a microherb grower and fresh produce supplier.',
 		'contact-us' => 'Contact Tiny Greens in Wynnum, Brisbane. Call or text 0458 278 951, email us, or apply for a trade account for your café or restaurant.',
