@@ -15,8 +15,14 @@
 	}
 	// Stagger siblings (cards, steps) by 80ms each, capped so nothing waits long.
 	items.forEach(function (el) {
-		var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.classList.contains('tg-reveal'); });
-		var i = sibs.indexOf(el);
+		var i;
+		if (el.parentNode.tagName === 'LI') {
+			// Product grid: stagger across each row of up to 4.
+			i = Array.prototype.indexOf.call(el.parentNode.parentNode.children, el.parentNode) % 4;
+		} else {
+			var sibs = Array.prototype.filter.call(el.parentNode.children, function (c) { return c.classList.contains('tg-reveal'); });
+			i = sibs.indexOf(el);
+		}
 		if (i > 0) { el.style.setProperty('--tg-delay', Math.min(i, 4) * 80 + 'ms'); }
 	});
 	var io = new IntersectionObserver(function (entries) {

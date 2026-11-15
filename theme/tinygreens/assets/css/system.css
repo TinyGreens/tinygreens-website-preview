@@ -163,3 +163,91 @@ h1 em, h2 em {
 @media (max-width: 600px) {
 	.tg-side .wp-block-cover__background.tg-shade { background: linear-gradient(180deg, rgba(18, 30, 22, .15) 0%, rgba(18, 30, 22, .88) 55%) !important; }
 }
+
+/* ---------- Grow list (shop) page head ---------- */
+.tg-page-head { padding-bottom: 40px !important; }
+.tg-page-head-grid { gap: clamp(32px, 5vw, 80px) !important; align-items: flex-end !important; }
+.tg-page-title { margin: 18px 0 22px !important; font-size: clamp(42px, 5.1vw, 76px) !important; }
+.tg-page-title .tg-line { display: block; overflow: hidden; padding-bottom: .1em; margin-bottom: -.1em; }
+.tg-page-title .tg-line > span { display: block; }
+.tg-page-head .tg-lead { margin: 0; }
+.tg-produce-note { padding: clamp(24px, 3vw, 34px); border-radius: var(--tg-radius); background: var(--wp--preset--color--paper-2); }
+.tg-produce-note .tg-tag { margin: 0; font: 600 13px/1 var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--wp--preset--color--leaf-text); }
+.tg-produce-note-title { font-size: clamp(24px, 2.2vw, 30px) !important; line-height: 1.2 !important; margin: 12px 0 10px !important; }
+.tg-produce-note p:not(.tg-tag) { margin: 0; font-size: 16px; color: var(--wp--preset--color--ink-soft); }
+.tg-produce-note .wp-block-buttons { margin-top: 20px; gap: 8px; }
+.tg-list-label { margin-top: clamp(48px, 6vw, 72px) !important; margin-bottom: 0 !important; padding-top: 20px; border-top: 1px solid var(--wp--preset--color--line); font: 400 clamp(22px, 2vw, 26px)/1.2 var(--wp--preset--font-family--serif); }
+
+/* Enquire link: underline draws in, arrow-style nudge */
+.tg-enquire { width: fit-content; border-top: 0 !important; padding: 0 0 3px !important; margin-top: 12px !important; background-image: linear-gradient(currentColor, currentColor); background-repeat: no-repeat; background-position: 0 100%; background-size: 0 1px; transition: background-size 280ms var(--tg-ease), letter-spacing 280ms var(--tg-ease); }
+.tg-card:hover .tg-enquire, .tg-enquire:focus-visible { background-size: 100% 1px; }
+.tg-card .wp-block-post-featured-image img, .tg-card .wp-block-image img { transition: transform 700ms var(--tg-ease); }
+.tg-card:hover .wp-block-post-featured-image img, .tg-card:hover .wp-block-image img { transform: scale(1.04); }
+.tg-no-photo a::before { content: ""; position: absolute; inset: 0; background: url("../images/sprout.svg") center 42%/56px no-repeat; transition: transform 700ms var(--tg-ease); }
+.tg-no-photo a { position: relative; background: radial-gradient(circle at 50% 42%, var(--wp--preset--color--white) 0, var(--wp--preset--color--paper-2) 60%) !important; }
+.tg-card:hover .tg-no-photo a::before { transform: translateY(-4px) scale(1.06); }
+
+@media (prefers-reduced-motion: no-preference) {
+	.tg-js .tg-page-head .tg-eyebrow { animation: tg-rise 700ms var(--tg-ease) 80ms both; }
+	.tg-js .tg-page-title .tg-line > span { animation: tg-line 900ms var(--tg-ease) 140ms both; }
+	.tg-js .tg-page-title .tg-line + .tg-line > span { animation-delay: 260ms; }
+	.tg-js .tg-page-title em { animation: tg-underline 700ms var(--tg-ease) 950ms both; }
+	.tg-js .tg-page-head .tg-lead { animation: tg-rise 700ms var(--tg-ease) 360ms both; }
+	.tg-js .tg-produce-note { animation: tg-rise 900ms var(--tg-ease) 450ms both; }
+	.tg-js .tg-list-label { animation: tg-fade 700ms var(--tg-ease) 600ms both; }
+}
+@media (prefers-reduced-motion: reduce) {
+	.tg-card:hover .tg-no-photo a::before { transform: none; }
+}
+@media (max-width: 781px) {
+	.tg-page-head-grid { flex-direction: column; align-items: stretch !important; }
+}
+@media (max-width: 600px) {
+	.tg-no-photo a::before { background-size: 40px; }
+}
+
+/* ---------- Where we deliver (Wholesale) ---------- */
+.tg-delivery { background: var(--wp--preset--color--paper); }
+.tg-delivery-grid { gap: clamp(32px, 6vw, 96px) !important; align-items: center !important; }
+.tg-delivery-copy h2 { margin: 14px 0 20px; }
+.tg-suburbs { list-style: none; padding: 0; margin: 22px 0 26px; display: flex; flex-wrap: wrap; gap: 8px; }
+.tg-suburbs li { margin: 0; padding: 8px 14px; border-radius: 999px; background: var(--wp--preset--color--white); border: 1px solid var(--wp--preset--color--line); font-size: 15px; font-weight: 500; }
+.tg-suburbs li:first-child { background: var(--wp--preset--color--forest); border-color: var(--wp--preset--color--forest); color: var(--wp--preset--color--white); }
+.tg-delivery-copy p { color: var(--wp--preset--color--ink-soft); }
+.tg-delivery-copy p strong { color: var(--wp--preset--color--ink); font-weight: 600; }
+
+.tg-map { margin: 0; padding: clamp(16px, 2.5vw, 28px); border-radius: var(--tg-radius); background: var(--wp--preset--color--white); border: 1px solid var(--wp--preset--color--line); }
+.tg-map svg { display: block; width: 100%; height: auto; }
+.tg-map figcaption { margin-top: 10px; font-size: 13px; color: var(--wp--preset--color--ink-soft); text-align: right; }
+.tg-map-bay { fill: #E4EAE0; }
+.tg-map-water { font: italic 400 22px var(--wp--preset--font-family--serif); fill: #7F9483; letter-spacing: .04em; }
+.tg-map-routes path { fill: none; stroke: var(--wp--preset--color--leaf); stroke-width: 1.6; opacity: .7; }
+.tg-map-stops circle { fill: var(--wp--preset--color--white); stroke: var(--wp--preset--color--forest); stroke-width: 3; }
+.tg-map-stops text, .tg-map-base text { font: 500 21px var(--wp--preset--font-family--sans); fill: var(--wp--preset--color--ink); }
+.tg-map-base circle { fill: var(--wp--preset--color--beet); }
+.tg-map-base .tg-map-pulse { fill: none; stroke: var(--wp--preset--color--beet); stroke-width: 2; opacity: .35; transform-origin: 680px 128px; transform-box: view-box; }
+.tg-map-base text { font: 400 30px var(--wp--preset--font-family--serif); }
+.tg-map-base .tg-map-sub { font: 600 15px var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; fill: var(--wp--preset--color--leaf-text); }
+
+/* Map motion: routes draw out from Wynnum, stops appear in turn, the base breathes softly */
+@keyframes tg-route { from { stroke-dasharray: 1 1; stroke-dashoffset: 1; } to { stroke-dasharray: 1 1; stroke-dashoffset: 0; } }
+@keyframes tg-pop { from { opacity: 0; transform: translateY(6px); } }
+@keyframes tg-breathe { 0%, 100% { transform: scale(1); opacity: .35; } 50% { transform: scale(1.6); opacity: 0; } }
+@media (prefers-reduced-motion: no-preference) {
+	.tg-js .tg-map.tg-reveal .tg-map-routes path { stroke-dasharray: 1 1; stroke-dashoffset: 1; }
+	.tg-js .tg-map.tg-reveal.is-in .tg-map-routes path { animation: tg-route 1200ms var(--tg-ease) calc(200ms + var(--i) * 90ms) forwards; }
+	.tg-js .tg-map.tg-reveal .tg-map-stops > g { opacity: 0; }
+	.tg-js .tg-map.tg-reveal.is-in .tg-map-stops > g { animation: tg-pop 600ms var(--tg-ease) calc(700ms + var(--i) * 90ms) both; opacity: 1; }
+	.tg-js .tg-map.tg-reveal.is-in .tg-map-pulse { animation: tg-breathe 3.2s ease-in-out 1.6s infinite; }
+}
+
+@media (max-width: 781px) {
+	.tg-delivery-grid { flex-direction: column; align-items: stretch !important; }
+}
+@media (max-width: 600px) {
+	.tg-map-stops text { display: none; }
+	.tg-map-stops circle { r: 9; stroke-width: 3.5; }
+	.tg-map-base text { font-size: 38px; }
+	.tg-map-water { display: none; }
+	.tg-suburbs li { font-size: 14px; padding: 7px 12px; }
+}

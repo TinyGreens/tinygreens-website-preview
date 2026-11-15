@@ -102,6 +102,8 @@ foreach ( $cats as $c ) :
 </div>
 <!-- /wp:group -->
 
+<!-- wp:pattern {"slug":"tinygreens/delivery-area"} /-->
+
 <!-- wp:group {"anchor":"how-it-works","className":"tg-section tg-trade","layout":{"type":"constrained","contentSize":"1240px"}} -->
 <div id="how-it-works" class="wp-block-group tg-section tg-trade">
 	<!-- wp:group {"className":"tg-section-head tg-reveal","layout":{"type":"flex","flexWrap":"nowrap","justifyContent":"space-between"}} -->
