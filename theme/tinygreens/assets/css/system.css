@@ -206,33 +206,6 @@ h1 em, h2 em {
 	.tg-no-photo a::before { background-size: 40px; }
 }
 
-/* ---------- Where we deliver (Wholesale): editorial suburb list ---------- */
-.tg-delivery { background: var(--wp--preset--color--white); border-top: 1px solid var(--wp--preset--color--line); border-bottom: 1px solid var(--wp--preset--color--line); }
-.tg-delivery-head { gap: clamp(32px, 6vw, 96px) !important; align-items: flex-end !important; margin-bottom: 0 !important; }
-.tg-delivery-head h2 { margin: 16px 0 0; }
-.tg-delivery-head .tg-lead { margin: 0; }
-.tg-areas { list-style: none; padding: 0; margin-top: clamp(40px, 5vw, 64px) !important; margin-bottom: 0 !important; display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--wp--preset--color--line); }
-.tg-areas li { display: flex; align-items: baseline; justify-content: space-between; gap: 12px; margin: 0; padding: 22px 0; border-bottom: 1px solid var(--wp--preset--color--line); font: 400 clamp(22px, 2.1vw, 28px)/1.2 var(--wp--preset--font-family--serif); color: var(--wp--preset--color--ink); }
-.tg-areas li:nth-child(3n+2), .tg-areas li:nth-child(3n+3) { padding-left: 28px; border-left: 1px solid var(--wp--preset--color--line); }
-.tg-area-tag { font: 600 12px/1 var(--wp--preset--font-family--sans); letter-spacing: .12em; text-transform: uppercase; color: var(--wp--preset--color--beet); white-space: nowrap; padding-right: 16px; }
-.tg-delivery-foot { display: grid !important; grid-template-columns: 1fr auto; gap: 24px 48px; align-items: center; margin-top: clamp(36px, 4vw, 56px) !important; }
-.tg-delivery-foot p { margin: 0; max-width: 40em; color: var(--wp--preset--color--ink-soft); }
-.tg-delivery-foot p strong { color: var(--wp--preset--color--ink); font-weight: 600; }
-.tg-delivery-foot .wp-block-buttons { margin: 0; gap: 10px; }
-
-@media (max-width: 860px) {
-	.tg-delivery-head { flex-direction: column; align-items: stretch !important; }
-	.tg-areas { grid-template-columns: 1fr 1fr; }
-	.tg-areas li:nth-child(3n+2), .tg-areas li:nth-child(3n+3) { padding-left: 0; border-left: 0; }
-	.tg-areas li:nth-child(2n) { padding-left: 20px; border-left: 1px solid var(--wp--preset--color--line); }
-	.tg-delivery-foot { grid-template-columns: 1fr; }
-}
-@media (max-width: 600px) {
-	.tg-areas li { font-size: 21px; padding: 16px 0; }
-	.tg-area-tag { font-size: 11px; padding-right: 10px; }
-	.tg-delivery-foot .wp-block-button, .tg-delivery-foot .wp-block-button__link { width: 100%; }
-}
-
 /* =========================================================
    Iteration 2: readability, tap targets, motion refinements
    ========================================================= */
