@@ -30,7 +30,7 @@ $img = function ( $file ) {
 				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="#apply">Apply for a trade account</a></div>
 				<!-- /wp:button -->
 				<!-- wp:paragraph {"className":"tg-text-link"} -->
-				<p class="tg-text-link"><a href="https://wholesale.tinygreens.com.au/">Already a customer? Order online →</a></p>
+				<p class="tg-text-link"><a href="https://wholesale.tinygreens.com.au/">Already a customer? Trade portal →</a></p>
 				<!-- /wp:paragraph -->
 			</div>
 			<!-- /wp:buttons -->
@@ -93,7 +93,7 @@ foreach ( $cats as $c ) :
 	<div class="wp-block-group tg-more tg-reveal">
 		<!-- wp:buttons -->
 		<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
-		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">View our full grow list →</a></div>
+		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">View all products →</a></div>
 		<!-- /wp:button --></div>
 		<!-- /wp:buttons -->
 		<!-- wp:paragraph --><p>Can’t see something you use? Ask us. We’ll tell you straight if we can supply it.</p><!-- /wp:paragraph -->

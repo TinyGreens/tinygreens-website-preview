@@ -6,7 +6,9 @@
  *  1. saved in WordPress (Dashboard → Trade enquiries), so nothing is lost if email fails, and
  *  2. emailed to the address below, with Reply-To set to the venue.
  *
- * Spam protection: a hidden "honeypot" field, a minimum fill time and a per-visitor rate limit.
+ * Spam protection: a hidden "honeypot" field (bots only) and a per-visitor rate limit. Forms sent
+ * unusually fast (e.g. autofill) are still saved and emailed, flagged "please check". If anything
+ * goes wrong, what the visitor typed is kept and shown again (30-minute draft).
  * Deliberately no nonce: nonces go stale on cached pages and would reject real customers.
  */
 
@@ -70,6 +72,23 @@ function tg_enquiry_stamp_age( $stamp ) {
 	return time() - (int) $parts[0];
 }
 
+/** Error messages shown above the form, by reason. */
+function tg_enquiry_messages() {
+	return array(
+		'fields' => 'Please check the highlighted fields below. Everything you typed is still here.',
+		'limit'  => 'We’ve received several enquiries from this connection in the last hour. Please call or text 0458 278 951 and we’ll sort it out. Your details are still below.',
+		'server' => 'Sorry, something went wrong on our side. Everything you typed is still here, so please try again, or call or text 0458 278 951.',
+		'expired' => 'Sorry, something went wrong sending that. Please try again, or call or text 0458 278 951.',
+	);
+}
+
+/** Keep what the visitor typed (for 30 minutes) so an error never wipes the form. */
+function tg_enquiry_save_draft( $data, $errors, $reason ) {
+	$token = wp_generate_password( 20, false );
+	set_transient( 'tg_enq_draft_' . $token, array( 'data' => $data, 'errors' => $errors, 'reason' => $reason ), 30 * MINUTE_IN_SECONDS );
+	return $token;
+}
+
 add_shortcode( 'tinygreens_trade_form', function () {
 	$status = isset( $_GET['enquiry'] ) ? sanitize_key( $_GET['enquiry'] ) : '';
 
@@ -77,12 +96,30 @@ add_shortcode( 'tinygreens_trade_form', function () {
 		return '<div class="tg-form-done" role="status"><h3>Thanks, we’ve got it.</h3><p>We’ll be in touch about your wholesale pricing. If it’s urgent, call or text 0458 278 951.</p></div>';
 	}
 
+	$draft = null;
+	if ( 'error' === $status && ! empty( $_GET['tgk'] ) ) {
+		$draft = get_transient( 'tg_enq_draft_' . preg_replace( '/[^A-Za-z0-9]/', '', (string) $_GET['tgk'] ) );
+	}
+	$values = $draft ? (array) $draft['data'] : array();
+	$errors = $draft ? (array) $draft['errors'] : array();
+	$msgs   = tg_enquiry_messages();
+	$reason = $draft ? $draft['reason'] : 'expired';
+
 	$opts = tg_enquiry_options();
 	ob_start();
 	?>
 	<form class="tg-form" method="post" action="<?php echo esc_url( admin_url( 'admin-post.php' ) ); ?>">
 		<?php if ( 'error' === $status ) : ?>
-			<p class="tg-form-error" role="alert">Sorry, something went wrong sending that. Please check the required fields and try again, or call 0458 278 951.</p>
+			<div class="tg-form-error" role="alert" tabindex="-1">
+				<p><?php echo esc_html( $msgs[ $reason ] ?? $msgs['expired'] ); ?></p>
+				<?php if ( $errors ) : ?>
+				<ul>
+					<?php foreach ( $errors as $key => $e ) : ?>
+					<li><a href="#tg-<?php echo esc_attr( $key ); ?>"><?php echo esc_html( tg_enquiry_fields()[ $key ][0] . ': ' . $e ); ?></a></li>
+					<?php endforeach; ?>
+				</ul>
+				<?php endif; ?>
+			</div>
 		<?php endif; ?>
 		<input type="hidden" name="action" value="tg_trade_enquiry">
 		<input type="hidden" name="tg_stamp" value="<?php echo esc_attr( tg_enquiry_stamp() ); ?>">
@@ -90,34 +127,39 @@ add_shortcode( 'tinygreens_trade_form', function () {
 		<div class="tg-form-grid">
 		<?php foreach ( tg_enquiry_fields() as $key => $f ) :
 			list( $label, $type, $required, $auto ) = $f;
-			$id  = 'tg-' . $key;
-			$req = $required ? ' required' : '';
-			$wide = in_array( $type, array( 'textarea', 'checks' ), true ) ? ' tg-field--wide' : '';
+			$id    = 'tg-' . $key;
+			$req   = $required ? ' required' : '';
+			$wide  = in_array( $type, array( 'textarea', 'checks' ), true ) ? ' tg-field--wide' : '';
+			$val   = isset( $values[ $key ] ) ? (string) $values[ $key ] : '';
+			$err   = isset( $errors[ $key ] ) ? $errors[ $key ] : '';
+			$aria  = $err ? ' aria-invalid="true" aria-describedby="' . esc_attr( $id . '-err' ) . '"' : '';
+			$state = $err ? ' tg-field--error' : '';
 			?>
-			<?php if ( 'checks' === $type ) : ?>
-				<fieldset class="tg-field<?php echo $wide; ?>">
+			<?php if ( 'checks' === $type ) : $picked = array_map( 'trim', explode( ',', $val ) ); ?>
+				<fieldset class="tg-field<?php echo $wide . $state; ?>" id="<?php echo esc_attr( $id ); ?>">
 					<legend><?php echo esc_html( $label ); ?></legend>
 					<div class="tg-checks">
 					<?php foreach ( $opts[ $key ] as $o ) : ?>
-						<label><input type="checkbox" name="tg_<?php echo esc_attr( $key ); ?>[]" value="<?php echo esc_attr( $o ); ?>"> <?php echo esc_html( $o ); ?></label>
+						<label><input type="checkbox" name="tg_<?php echo esc_attr( $key ); ?>[]" value="<?php echo esc_attr( $o ); ?>"<?php checked( in_array( $o, $picked, true ) ); ?>> <?php echo esc_html( $o ); ?></label>
 					<?php endforeach; ?>
 					</div>
 				</fieldset>
 			<?php else : ?>
-				<p class="tg-field<?php echo $wide; ?>">
+				<p class="tg-field<?php echo $wide . $state; ?>">
 					<label for="<?php echo esc_attr( $id ); ?>"><?php echo esc_html( $label ); ?><?php echo $required ? '' : ' <span>(optional)</span>'; ?></label>
 					<?php if ( 'select' === $type ) : ?>
-						<select id="<?php echo esc_attr( $id ); ?>" name="tg_<?php echo esc_attr( $key ); ?>"<?php echo $req; ?>>
+						<select id="<?php echo esc_attr( $id ); ?>" name="tg_<?php echo esc_attr( $key ); ?>"<?php echo $req . $aria; ?>>
 							<option value="">Choose one</option>
 							<?php foreach ( $opts[ $key ] as $o ) : ?>
-								<option><?php echo esc_html( $o ); ?></option>
+								<option<?php selected( $val, $o ); ?>><?php echo esc_html( $o ); ?></option>
 							<?php endforeach; ?>
 						</select>
 					<?php elseif ( 'textarea' === $type ) : ?>
-						<textarea id="<?php echo esc_attr( $id ); ?>" name="tg_<?php echo esc_attr( $key ); ?>" rows="4" maxlength="2000"></textarea>
+						<textarea id="<?php echo esc_attr( $id ); ?>" name="tg_<?php echo esc_attr( $key ); ?>" rows="4" maxlength="2000"<?php echo $aria; ?>><?php echo esc_textarea( $val ); ?></textarea>
 					<?php else : ?>
-						<input id="<?php echo esc_attr( $id ); ?>" type="<?php echo esc_attr( $type ); ?>" name="tg_<?php echo esc_attr( $key ); ?>" autocomplete="<?php echo esc_attr( $auto ); ?>" maxlength="200"<?php echo $req; ?>>
+						<input id="<?php echo esc_attr( $id ); ?>" type="<?php echo esc_attr( $type ); ?>" name="tg_<?php echo esc_attr( $key ); ?>" value="<?php echo esc_attr( $val ); ?>" autocomplete="<?php echo esc_attr( $auto ); ?>" maxlength="200"<?php echo $req . $aria; ?>>
 					<?php endif; ?>
+					<?php if ( $err ) : ?><span class="tg-field-error" id="<?php echo esc_attr( $id . '-err' ); ?>"><?php echo esc_html( $err ); ?></span><?php endif; ?>
 				</p>
 			<?php endif; ?>
 		<?php endforeach; ?>
@@ -133,52 +175,60 @@ add_shortcode( 'tinygreens_trade_form', function () {
 
 function tg_enquiry_handle() {
 	$back = wp_get_referer();
-	$back = $back ? remove_query_arg( 'enquiry', strtok( $back, '#' ) ) : home_url( '/wholesale/' );
+	$back = $back ? remove_query_arg( array( 'enquiry', 'tgk' ), strtok( $back, '#' ) ) : home_url( '/wholesale/' );
 
-	$fail = function () use ( $back ) {
-		wp_safe_redirect( add_query_arg( 'enquiry', 'error', $back ) . '#apply' );
+	$go = function ( $args ) use ( $back ) {
+		wp_safe_redirect( add_query_arg( $args, $back ) . '#apply' );
 		exit;
 	};
 
-	// Bots: honeypot filled, or form sent impossibly fast. Pretend it worked.
-	$age = tg_enquiry_stamp_age( wp_unslash( $_POST['tg_stamp'] ?? '' ) );
-	if ( ! empty( $_POST['tg_website'] ) || $age < 3 ) {
-		wp_safe_redirect( add_query_arg( 'enquiry', 'sent', $back ) . '#apply' );
-		exit;
+	// Bots that fill the hidden field: pretend it worked. People never see this field.
+	if ( ! empty( $_POST['tg_website'] ) ) {
+		$go( array( 'enquiry' => 'sent' ) );
 	}
 
-	// Rate limit: 5 enquiries per hour per visitor.
-	$ip_key = 'tg_enq_' . md5( $_SERVER['REMOTE_ADDR'] ?? '' );
-	$count  = (int) get_transient( $ip_key );
-	if ( $count >= 5 ) {
-		$fail();
-	}
-	set_transient( $ip_key, $count + 1, HOUR_IN_SECONDS );
-
-	$opts = tg_enquiry_options();
-	$data = array();
+	// Read and clean every field first, so nothing typed is ever lost.
+	$opts   = tg_enquiry_options();
+	$data   = array();
+	$errors = array();
 	foreach ( tg_enquiry_fields() as $key => $f ) {
 		$raw = wp_unslash( $_POST[ 'tg_' . $key ] ?? '' );
 		if ( 'checks' === $f[1] ) {
-			$val = array_values( array_intersect( (array) $raw, $opts[ $key ] ) );
-			$val = implode( ', ', $val );
+			$val = implode( ', ', array_values( array_intersect( (array) $raw, $opts[ $key ] ) ) );
 		} elseif ( 'select' === $f[1] ) {
 			$val = in_array( $raw, $opts[ $key ], true ) ? $raw : '';
 		} elseif ( 'email' === $f[1] ) {
-			$val = sanitize_email( $raw );
+			$val = sanitize_text_field( mb_substr( (string) $raw, 0, 200 ) );
 		} elseif ( 'textarea' === $f[1] ) {
 			$val = sanitize_textarea_field( mb_substr( (string) $raw, 0, 2000 ) );
 		} else {
 			$val = sanitize_text_field( mb_substr( (string) $raw, 0, 200 ) );
 		}
-		if ( $f[2] && '' === $val ) {
-			$fail();
-		}
 		$data[ $key ] = $val;
+		if ( $f[2] && '' === $val ) {
+			$errors[ $key ] = 'select' === $f[1] ? 'Please choose one.' : 'Please fill this in.';
+		}
 	}
-	if ( ! is_email( $data['email'] ) ) {
-		$fail();
+	if ( '' !== $data['email'] && ! is_email( $data['email'] ) ) {
+		$errors['email'] = 'Please check this email address.';
 	}
+	if ( $errors ) {
+		$errors = array_intersect_key( array_merge( tg_enquiry_fields(), $errors ), $errors ); // form order
+		$go( array( 'enquiry' => 'error', 'tgk' => tg_enquiry_save_draft( $data, $errors, 'fields' ) ) );
+	}
+
+	// Rate limit: 5 enquiries per hour per visitor. Their details are kept.
+	$ip_key = 'tg_enq_' . md5( $_SERVER['REMOTE_ADDR'] ?? '' );
+	$count  = (int) get_transient( $ip_key );
+	if ( $count >= 5 ) {
+		$go( array( 'enquiry' => 'error', 'tgk' => tg_enquiry_save_draft( $data, array(), 'limit' ) ) );
+	}
+	set_transient( $ip_key, $count + 1, HOUR_IN_SECONDS );
+
+	// Sent unusually fast (e.g. autofill) or from an old/cached page: never drop it.
+	// Save and email it as normal, with a "please check" flag for David.
+	$age  = tg_enquiry_stamp_age( wp_unslash( $_POST['tg_stamp'] ?? '' ) );
+	$flag = $age < 3 ? '[Please check: sent very quickly] ' : '';
 
 	$lines = array();
 	foreach ( tg_enquiry_fields() as $key => $f ) {
@@ -190,23 +240,25 @@ function tg_enquiry_handle() {
 	$post_id = wp_insert_post( array(
 		'post_type'    => 'tg_enquiry',
 		'post_status'  => 'private',
-		'post_title'   => $title,
+		'post_title'   => $flag . $title,
 		'post_content' => $body,
 	) );
 	if ( ! $post_id || is_wp_error( $post_id ) ) {
-		$fail();
+		$go( array( 'enquiry' => 'error', 'tgk' => tg_enquiry_save_draft( $data, array(), 'server' ) ) );
+	}
+	if ( $flag ) {
+		update_post_meta( $post_id, '_tg_flag', 'fast' );
 	}
 
 	$sent = wp_mail(
 		TG_ENQUIRY_TO,
-		'New trade enquiry: ' . $title,
+		$flag . 'New trade enquiry: ' . $title,
 		$body . "\n\nAlso saved in WordPress under Trade enquiries.",
 		array( 'Reply-To: ' . $data['name'] . ' <' . $data['email'] . '>' )
 	);
 	update_post_meta( $post_id, '_tg_emailed', $sent ? 'yes' : 'no' );
 
-	wp_safe_redirect( add_query_arg( 'enquiry', 'sent', $back ) . '#apply' );
-	exit;
+	$go( array( 'enquiry' => 'sent' ) );
 }
 add_action( 'admin_post_nopriv_tg_trade_enquiry', 'tg_enquiry_handle' );
 add_action( 'admin_post_tg_trade_enquiry', 'tg_enquiry_handle' );

@@ -30,7 +30,7 @@
 		<!-- wp:column {"className":"tg-way tg-way--trade"} -->
 		<div class="wp-block-column tg-way tg-way--trade">
 			<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">For cafés &amp; restaurants</p><!-- /wp:paragraph -->
-			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Open a trade account</h3><!-- /wp:heading -->
+			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Supply for your café or restaurant</h3><!-- /wp:heading -->
 			<!-- wp:paragraph -->
 			<p>Get in touch for wholesale pricing. Trade customers order online, with fruit, veg, mushrooms and edible flowers on the same delivery.</p>
 			<!-- /wp:paragraph -->

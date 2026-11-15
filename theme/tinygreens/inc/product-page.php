@@ -67,7 +67,7 @@ add_shortcode( 'tinygreens_product_panel', function () {
 	<div class="tg-pp-order tg-pp-order--trade">
 		<p class="tg-pp-order-label">For cafés &amp; restaurants</p>
 		<p>Trade customers order online with trade pricing. New venue? <a href="/wholesale/#apply">Apply for a trade account</a>.</p>
-		<p class="tg-route-link"><a href="https://wholesale.tinygreens.com.au/">Order on the trade portal</a></p>
+		<p class="tg-route-link"><a href="https://wholesale.tinygreens.com.au/">Trade portal</a></p>
 	</div>
 	<?php
 	return ob_get_clean();
@@ -90,10 +90,13 @@ add_shortcode( 'tinygreens_more_products', function () {
 	if ( false === $pos || count( $all ) < 2 ) {
 		return '';
 	}
-	$pick = array();
-	for ( $i = 1; $i < count( $all ) && count( $pick ) < 4; $i++ ) {
-		$pick[] = $all[ ( $pos + $i ) % count( $all ) ];
+	// Next items in grow-list order, preferring ones that have a photo.
+	$next = array();
+	for ( $i = 1; $i < count( $all ); $i++ ) {
+		$next[] = $all[ ( $pos + $i ) % count( $all ) ];
 	}
+	$with = array_values( array_filter( $next, 'has_post_thumbnail' ) );
+	$pick = array_slice( array_merge( $with, array_diff( $next, $with ) ), 0, 4 );
 	ob_start();
 	echo '<ul class="tg-cards tg-more-cards">';
 	foreach ( $pick as $pid ) {
@@ -104,13 +107,13 @@ add_shortcode( 'tinygreens_more_products', function () {
 		if ( $img ) {
 			printf( '<figure class="wp-block-post-featured-image"><a href="%s" tabindex="-1" aria-hidden="true">%s</a></figure>', esc_url( $link ), $img );
 		} else {
-			printf( '<figure class="wp-block-post-featured-image tg-no-photo"><a href="%s" tabindex="-1" aria-hidden="true"><span>Photo coming soon</span></a></figure>', esc_url( $link ) );
+			printf( '<figure class="wp-block-post-featured-image tg-no-photo"><a href="%s" tabindex="-1" aria-hidden="true"><span class="screen-reader-text">Photo coming soon</span></a></figure>', esc_url( $link ) );
 		}
 		if ( $cat ) {
 			printf( '<div class="tg-card-cat">%s</div>', esc_html( $cat->name ) );
 		}
 		printf( '<h3 class="wp-block-post-title"><a href="%s">%s</a></h3>', esc_url( $link ), esc_html( get_the_title( $pid ) ) );
-		printf( '<a class="tg-enquire" href="%s">Enquire →<span class="screen-reader-text"> about %s</span></a>', esc_url( $link ), esc_html( get_the_title( $pid ) ) );
+		printf( '<a class="tg-enquire" href="%s">View details →<span class="screen-reader-text">: %s</span></a>', esc_url( $link ), esc_html( get_the_title( $pid ) ) );
 		echo '</div></li>';
 	}
 	echo '</ul>';

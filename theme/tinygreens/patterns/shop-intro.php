@@ -32,7 +32,7 @@
 				<!-- /wp:paragraph -->
 				<!-- wp:buttons -->
 				<div class="wp-block-buttons">
-					<!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Fill out the trade form</a></div><!-- /wp:button -->
+					<!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Apply for a trade account</a></div><!-- /wp:button -->
 					<!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="tel:+61458278951">Call 0458 278 951</a></div><!-- /wp:button -->
 				</div>
 				<!-- /wp:buttons -->

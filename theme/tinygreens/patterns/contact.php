@@ -72,7 +72,7 @@ $rows = array(
 			<!-- wp:paragraph -->
 			<p>Tell us about your venue and what you use. We’ll come back to you about trade pricing, delivery and the current produce list.</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"className":"tg-route-link"} --><p class="tg-route-link"><a href="/wholesale/#apply">Fill out the trade form</a></p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"tg-route-link"} --><p class="tg-route-link"><a href="/wholesale/#apply">Apply for a trade account</a></p><!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
 		<!-- wp:column {"className":"tg-route tg-route--trade tg-reveal"} -->
@@ -82,7 +82,7 @@ $rows = array(
 			<!-- wp:paragraph -->
 			<p>Your price list and ordering are on the trade portal. For anything else, call or text David.</p>
 			<!-- /wp:paragraph -->
-			<!-- wp:paragraph {"className":"tg-route-link"} --><p class="tg-route-link"><a href="https://wholesale.tinygreens.com.au/">Go to the trade portal</a></p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"tg-route-link"} --><p class="tg-route-link"><a href="https://wholesale.tinygreens.com.au/">Trade portal</a></p><!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->
 	</div>

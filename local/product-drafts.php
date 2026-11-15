@@ -58,3 +58,26 @@ foreach ( $tg_drafts as $name => $d ) {
 	$p->set_description( '<!-- wp:paragraph --><p>' . esc_html( $d[0] ) . '</p><!-- /wp:paragraph -->' );
 	$p->save();
 }
+
+// TEMPORARY licensed stock photos (see docs/11-temporary-photos.md). Only added where a product
+// has no photo yet. The caption becomes the "Illustrative photo" note on the product page.
+$tg_temp_photos = array(
+	'Red Cabbage' => array( 'red-cabbage-microgreens-usda.jpg', 'Red cabbage microgreens with purple-veined seed leaves (illustrative photo)', 'Illustrative photo · Peggy Greb, USDA Agricultural Research Service (public domain)' ),
+	'Pea Shoots'  => array( 'pea-shoots-cc0.jpg', 'Fresh pea shoots with tender leaves and stems (illustrative photo)', 'Illustrative photo · Fumikas Sagisavas, Wikimedia Commons (CC0)' ),
+);
+require_once ABSPATH . 'wp-admin/includes/image.php';
+foreach ( $tg_temp_photos as $name => $ph ) {
+	$found = get_posts( array( 'post_type' => 'product', 'title' => $name, 'numberposts' => 1, 'fields' => 'ids', 'post_status' => 'any' ) );
+	if ( ! $found || has_post_thumbnail( $found[0] ) ) {
+		continue;
+	}
+	$src    = get_theme_file_path( 'assets/images/temporary/' . $ph[0] );
+	$upload = wp_upload_bits( $ph[0], null, file_get_contents( $src ) );
+	if ( ! empty( $upload['error'] ) ) {
+		continue;
+	}
+	$att = wp_insert_attachment( array( 'post_mime_type' => 'image/jpeg', 'post_title' => $name . ' (temporary)', 'post_excerpt' => $ph[2], 'post_status' => 'inherit' ), $upload['file'], $found[0] );
+	wp_update_attachment_metadata( $att, wp_generate_attachment_metadata( $att, $upload['file'] ) );
+	update_post_meta( $att, '_wp_attachment_image_alt', $ph[1] );
+	set_post_thumbnail( $found[0], $att );
+}

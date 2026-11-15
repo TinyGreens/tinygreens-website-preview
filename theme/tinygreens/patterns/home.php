@@ -27,10 +27,10 @@ $img = function ( $file ) {
 			<!-- wp:buttons {"className":"tg-actions"} -->
 			<div class="wp-block-buttons tg-actions">
 				<!-- wp:button -->
-				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Open a trade account</a></div>
+				<div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Apply for a trade account</a></div>
 				<!-- /wp:button -->
 				<!-- wp:button {"className":"is-style-outline"} -->
-				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">Browse the grow list</a></div>
+				<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">Browse products</a></div>
 				<!-- /wp:button -->
 			</div>
 			<!-- /wp:buttons -->
@@ -56,10 +56,10 @@ $img = function ( $file ) {
 	<div class="wp-block-group tg-paths">
 <?php
 $paths = array(
-	array( 'https://wholesale.tinygreens.com.au/', 'Wholesale · customers', 'Order online' ),
+	array( 'https://wholesale.tinygreens.com.au/', 'Wholesale · customers', 'Trade portal' ),
 	array( '/wholesale/#apply', 'Wholesale · new venues', 'Apply for a trade account' ),
 	array( 'tel:+61458278951', 'Retail · for home', 'Call or text to order' ),
-	array( '/shop/', 'Products', 'Browse the grow list' ),
+	array( '/shop/', 'Products', 'Browse products' ),
 );
 foreach ( $paths as $p ) :
 	?>
@@ -106,7 +106,6 @@ foreach ( $paths as $p ) :
 		<div class="wp-block-column">
 			<!-- wp:cover {"url":"<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>","dimRatio":0,"minHeight":560,"contentPosition":"bottom left","className":"tg-side tg-reveal"} -->
 			<div class="wp-block-cover has-custom-content-position is-position-bottom-left tg-side tg-reveal" style="min-height:560px"><span aria-hidden="true" class="wp-block-cover__background has-background-dim-0 has-background-dim tg-shade"></span><img class="wp-block-cover__image-background" alt="A wooden crate of capsicums, chillies, avocados and spring onions" src="<?php echo $img( 'produce-crate-PLACEHOLDER-unsplash.jpg' ); ?>" data-object-fit="cover"/><div class="wp-block-cover__inner-container">
-				<!-- wp:paragraph {"className":"tg-ph-tag"} --><p class="tg-ph-tag">Placeholder photo (Unsplash)</p><!-- /wp:paragraph -->
 				<!-- wp:paragraph {"className":"tg-tag"} --><p class="tg-tag">Sourced by us</p><!-- /wp:paragraph -->
 				<!-- wp:heading {"level":3} --><h3 class="wp-block-heading">Fruit, veg &amp; mushrooms</h3><!-- /wp:heading -->
 				<!-- wp:paragraph --><p>Fresh fruit and vegetables, specialty mushrooms, edible flowers and fresh herbs, on the same delivery as your micros.</p><!-- /wp:paragraph -->
@@ -156,7 +155,7 @@ foreach ( $cards as $c ) :
 			<figure class="wp-block-image size-large"><a href="<?php echo esc_url( $link ); ?>" tabindex="-1" aria-hidden="true"><img src="<?php echo $img( $c[0] ); ?>" alt="<?php echo esc_attr( $c[1] ); ?>" loading="lazy"/></a></figure>
 			<!-- /wp:image -->
 			<!-- wp:heading {"level":3} --><h3 class="wp-block-heading"><a href="<?php echo esc_url( $link ); ?>"><?php echo esc_html( $c[2] ); ?></a></h3><!-- /wp:heading -->
-			<!-- wp:paragraph {"className":"tg-meta"} --><p class="tg-meta"><span><?php echo esc_html( $c[3] ? $c[3] : 'Sizes on request' ); ?></span><a class="tg-enquire" href="<?php echo esc_url( $link ); ?>">Enquire →</a></p><!-- /wp:paragraph -->
+			<!-- wp:paragraph {"className":"tg-meta"} --><p class="tg-meta"><span><?php echo esc_html( $c[3] ? $c[3] : 'Sizes on request' ); ?></span><a class="tg-enquire" href="<?php echo esc_url( $link ); ?>">View details →<span class="screen-reader-text">: <?php echo esc_html( $c[2] ); ?></span></a></p><!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:group -->
 <?php endforeach; ?>
@@ -167,7 +166,7 @@ foreach ( $cards as $c ) :
 	<div class="wp-block-group tg-more tg-reveal">
 		<!-- wp:buttons -->
 		<div class="wp-block-buttons"><!-- wp:button {"className":"is-style-outline"} -->
-		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">View our full grow list →</a></div>
+		<div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/shop/">View all products →</a></div>
 		<!-- /wp:button --></div>
 		<!-- /wp:buttons -->
 		<!-- wp:paragraph --><p>20+ varieties, including live trays</p><!-- /wp:paragraph -->
@@ -219,8 +218,8 @@ foreach ( $steps as $s ) :
 		<!-- wp:paragraph --><p>Already a trade customer? Your price list and ordering are online.</p><!-- /wp:paragraph -->
 		<!-- wp:buttons -->
 		<div class="wp-block-buttons">
-			<!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://wholesale.tinygreens.com.au/">Order online</a></div><!-- /wp:button -->
-			<!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Apply for an account</a></div><!-- /wp:button -->
+			<!-- wp:button --><div class="wp-block-button"><a class="wp-block-button__link wp-element-button" href="https://wholesale.tinygreens.com.au/">Trade portal</a></div><!-- /wp:button -->
+			<!-- wp:button {"className":"is-style-outline"} --><div class="wp-block-button is-style-outline"><a class="wp-block-button__link wp-element-button" href="/wholesale/#apply">Apply for a trade account</a></div><!-- /wp:button -->
 		</div>
 		<!-- /wp:buttons -->
 	</div>
@@ -256,7 +255,7 @@ foreach ( $steps as $s ) :
 			</div>
 			<!-- /wp:buttons -->
 			<!-- wp:paragraph {"className":"tg-note"} -->
-			<p class="tg-note"><strong>Run a café or restaurant?</strong> Contact us for wholesale pricing. <a class="tg-text-link" href="/wholesale/">Wholesale enquiries</a></p>
+			<p class="tg-note"><strong>Run a café or restaurant?</strong> Contact us for wholesale pricing. <a class="tg-text-link" href="/wholesale/#apply">Apply for a trade account</a></p>
 			<!-- /wp:paragraph -->
 		</div>
 		<!-- /wp:column -->

@@ -472,3 +472,40 @@ h1 em, h2 em {
 	.tg-hero .tg-actions .is-style-outline { display: none; }
 	#for-home .tg-note { display: none; }
 }
+
+/* Trade form: error summary and per-field messages */
+.tg-form-error p { margin: 0; }
+.tg-form-error ul { margin: 10px 0 0; padding-left: 18px; }
+.tg-form-error a { color: inherit; font-weight: 600; }
+.tg-field-error { font-size: 14px; font-weight: 600; color: var(--wp--preset--color--beet); }
+.tg-field--error input, .tg-field--error select, .tg-field--error textarea { border-color: var(--wp--preset--color--beet) !important; }
+
+/* Quieter "photo coming soon" tiles: a soft sprout mark, no visible caption (kept for screen readers) */
+.tg-no-photo a, .tg-pp-photo.tg-no-photo { background: var(--wp--preset--color--paper-2) !important; }
+.tg-no-photo a::before { background-size: 34px !important; opacity: .5; }
+.tg-pp-photo.tg-no-photo::before { background-size: 60px; opacity: .5; }
+@media (max-width: 600px) {
+	/* Card footer: sizes above the "View details" link, so neither wraps awkwardly */
+	.tg-card .tg-meta { flex-direction: column; align-items: flex-start !important; gap: 2px; }
+	.tg-meta .tg-enquire { white-space: nowrap; }
+}
+
+/* Header at tablet/laptop widths: keep everything on one line */
+.tg-header .tg-logo .wp-block-site-title, .tg-header .wp-block-navigation a, .tg-header .wp-block-button__link { white-space: nowrap; }
+@media (min-width: 600px) and (max-width: 1199px) {
+	.tg-header .wp-block-navigation { gap: 20px; font-size: 14px; }
+	.tg-header .tg-nav { gap: 20px; }
+}
+@media (min-width: 600px) and (max-width: 1099px) {
+	/* The hero, Wholesale page and footer all carry "Apply for a trade account" */
+	.tg-header .tg-header-cta { display: none; }
+}
+@media (min-width: 600px) and (max-width: 899px) {
+	.tg-header .wp-block-navigation { gap: 16px; }
+	.tg-header .tg-nav { gap: 16px; }
+}
+
+/* Note under temporary (illustrative) product photos */
+.tg-pp-media .tg-photo-note { margin-top: 10px; font-size: 13px; line-height: 1.45; color: var(--wp--preset--color--ink-soft); }
+.tg-pp-photo:has(.tg-photo-note) { overflow: visible; aspect-ratio: auto; background: none; border-radius: 0; }
+.tg-pp-photo:has(.tg-photo-note) img { aspect-ratio: 1; border-radius: var(--tg-radius, 16px); }

@@ -54,10 +54,10 @@ add_filter( 'render_block_core/post-featured-image', function ( $html, $block ) 
 		$class .= ' ' . $block['attrs']['className'];
 	}
 	if ( is_singular( 'product' ) && get_the_ID() === get_queried_object_id() ) {
-		return sprintf( '<figure class="%s"><span>Photo coming soon</span></figure>', esc_attr( $class ) );
+		return sprintf( '<figure class="%s"><span class="screen-reader-text">Photo coming soon</span></figure>', esc_attr( $class ) );
 	}
 	return sprintf(
-		'<figure class="%s"><a href="%s" aria-label="%s"><span>Photo coming soon</span></a></figure>',
+		'<figure class="%s"><a href="%s" aria-label="%s"><span class="screen-reader-text">Photo coming soon</span></a></figure>',
 		esc_attr( $class ),
 		esc_url( get_permalink() ),
 		esc_attr( get_the_title() )
@@ -67,4 +67,20 @@ add_filter( 'render_block_core/post-featured-image', function ( $html, $block ) 
 /** No shop icons: stop WooCommerce auto-adding its cart and account icons to the header. */
 add_filter( 'hooked_block_types', function ( $hooked ) {
 	return array_values( array_diff( $hooked, array( 'woocommerce/mini-cart', 'woocommerce/customer-account' ) ) );
+}, 20 );
+
+/**
+ * Temporary stock photos: whatever is in the image's Caption field (Media Library) is shown
+ * under the photo on its product page, e.g. "Illustrative photo · credit". When David uploads
+ * his own photo (no caption), the note disappears by itself. No code change needed.
+ */
+add_filter( 'render_block_core/post-featured-image', function ( $html ) {
+	if ( '' === trim( $html ) || ! is_singular( 'product' ) || get_the_ID() !== get_queried_object_id() ) {
+		return $html;
+	}
+	$caption = wp_get_attachment_caption( get_post_thumbnail_id() );
+	if ( ! $caption ) {
+		return $html;
+	}
+	return preg_replace( '#</figure>\s*$#', '<figcaption class="tg-photo-note">' . esc_html( $caption ) . '</figcaption></figure>', $html, 1 );
 }, 20 );
